@@ -12,13 +12,56 @@
     overflow: hidden;
 }
 
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
 .logoWrapper {
-    opacity: 0;
-    scale: 0.8;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo {
     border-radius: 50%;
-    /* Optional: if logo is square, make it circular for modern feel */
     object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.line {
+    height: 2px;
+    background: #2563eb;
+    /* Brand Blue */
+    margin: 0.5rem 0;
+}
+
+.textWrapper {
+    text-align: center;
+    overflow: hidden;
+    /* For masking text if needed */
+}
+
+.brandName {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #000;
+    margin: 0;
+    line-height: 1;
+}
+
+.tagline {
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    color: #888;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
 }
