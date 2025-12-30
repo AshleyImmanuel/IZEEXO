@@ -73,6 +73,19 @@
     flex-direction: column;
     align-items: center;
     gap: 0.25rem;
+    animation: float-text 6s ease-in-out infinite;
+}
+
+@keyframes float-text {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .connector {
