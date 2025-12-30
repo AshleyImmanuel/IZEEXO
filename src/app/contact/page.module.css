@@ -61,7 +61,7 @@
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, var(--text-main), var(--color-primary));
+    background: linear-gradient(to right, #000, #333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -78,7 +78,7 @@
 }
 
 .linkCard {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     padding: 3rem 2rem;
     border-radius: 20px;
@@ -86,7 +86,7 @@
     color: var(--text-main);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,10 +108,52 @@
 
 .linkCard:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(var(--color-primary-rgb), 0.15);
-    background: white;
-    border-color: var(--color-primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
+
+/* Icon Resizing */
+.iconWrapper {
+    font-size: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.linkCard:hover .iconWrapper {
+    transform: scale(1.1);
+}
+
+/* Brand Colors */
+.whatsapp .iconWrapper {
+    color: #25D366;
+}
+
+.instagram .iconWrapper {
+    color: #E1306C;
+}
+
+.email .iconWrapper {
+    color: #EA4335;
+}
+
+/* Hover States for Cards */
+.whatsapp:hover {
+    border-color: #25D366;
+    background: #fff;
+}
+
+.instagram:hover {
+    border-color: #E1306C;
+    background: #fff;
+}
+
+.email:hover {
+    border-color: #EA4335;
+    background: #fff;
+}
+
 
 @keyframes fadeInUp {
     from {
@@ -135,11 +177,6 @@
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.icon {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
 }
 
 .linkCard h3 {
