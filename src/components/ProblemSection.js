@@ -15,9 +15,19 @@ export default function ProblemSection() {
         const cards = gsap.utils.toArray(`.${styles.floatingCard}`);
 
         cards.forEach((card, i) => {
+            // Random float effect for "alive" feel
             gsap.to(card, {
-                y: i % 2 === 0 ? -50 : 50, // Move visually in different directions
-                duration: 1,
+                y: "random(-20, 20)",
+                duration: "random(2, 4)",
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: i * 0.2
+            });
+
+            // Scroll parallax
+            gsap.to(card, {
+                yPercent: i % 2 === 0 ? -20 : 20,
                 ease: "none",
                 scrollTrigger: {
                     trigger: containerRef.current,
@@ -35,36 +45,36 @@ export default function ProblemSection() {
             <div className={styles.container}>
                 <div className={styles.centerContent}>
                     <h2 className={styles.title}>
-                        Eliminate the bottlenecks <br /> that hold you back.
+                        The Silent Killers <br /> of Brand Growth.
                     </h2>
                     <p className={styles.subtitle}>
-                        Outdated workflows and generic designs are costing you clients.
+                        Don't let invisible friction slow down your momentum.
                     </p>
                 </div>
 
-                {/* Floating Cards - "Problems" */}
+                {/* Floating Cards - Re-positioned to not overlap text */}
                 {/* 1 */}
                 <div className={`${styles.floatingCard} ${styles.pos1}`}>
                     <div className={styles.iconWarning}>⚠️</div>
-                    <p>Teams spend too much time on repetitive tasks.</p>
+                    <p>Inconsistent visual identity confuses customers.</p>
                 </div>
 
                 {/* 2 */}
                 <div className={`${styles.floatingCard} ${styles.pos2}`}>
                     <div className={styles.iconWarning}>⚠️</div>
-                    <p>Leads slip away without consistent follow-up.</p>
+                    <p>Generic templates blend into the noise.</p>
                 </div>
 
                 {/* 3 */}
                 <div className={`${styles.floatingCard} ${styles.pos3}`}>
                     <div className={styles.iconWarning}>⚠️</div>
-                    <p>Outdated workflows hurt customer experience.</p>
+                    <p>Slow user experience kills conversions.</p>
                 </div>
 
                 {/* 4 */}
                 <div className={`${styles.floatingCard} ${styles.pos4}`}>
                     <div className={styles.iconWarning}>⚠️</div>
-                    <p>Scaling requires more people and higher costs.</p>
+                    <p>Hidden tech debt limits scalability.</p>
                 </div>
             </div>
         </section>

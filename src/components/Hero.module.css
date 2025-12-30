@@ -79,19 +79,17 @@
     display: inline-block;
 }
 
-/* Subtitle - Magazine Style */
+/* Subtitle - Professional & Clean */
 .subtitle {
-    font-size: clamp(1.125rem, 1.5vw, 1.35rem);
-    color: #111;
-    /* Darker for readability */
-    margin-bottom: 4rem;
-    max-width: 500px;
+    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+    color: #333;
+    margin-bottom: 3.5rem;
+    max-width: 550px;
     margin-left: 0;
-    /* Align left */
-    line-height: 1.5;
-    font-weight: 500;
-    border-left: 2px solid #8b5cf6;
-    /* Accent line */
+    line-height: 1.6;
+    font-weight: 400;
+    border-left: 3px solid #7c3aed;
+    /* Standardized Purple */
     padding-left: 1.5rem;
 }
 
