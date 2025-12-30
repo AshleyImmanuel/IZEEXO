@@ -15,7 +15,6 @@ export default function ProblemSection() {
         const cards = gsap.utils.toArray(`.${styles.floatingCard}`);
 
         cards.forEach((card, i) => {
-            // Random float effect for "alive" feel
             gsap.to(card, {
                 y: "random(-20, 20)",
                 duration: "random(2, 4)",
@@ -25,7 +24,6 @@ export default function ProblemSection() {
                 delay: i * 0.2
             });
 
-            // Scroll parallax
             gsap.to(card, {
                 yPercent: i % 2 === 0 ? -20 : 20,
                 ease: "none",
@@ -45,36 +43,37 @@ export default function ProblemSection() {
             <div className={styles.container}>
                 <div className={styles.centerContent}>
                     <h2 className={styles.title}>
-                        The Silent Killers <br /> of Brand Growth.
+                        Average Design <br /> is Invisible.
                     </h2>
                     <p className={styles.subtitle}>
-                        Don't let invisible friction slow down your momentum.
+                        In a crowded digital space, blending in is the fastest way to accept failure.
+                        We ensure you stand out.
                     </p>
                 </div>
 
-                {/* Floating Cards - Re-positioned to not overlap text */}
+                {/* Floating Cards - Unique "Design Problems" */}
                 {/* 1 */}
                 <div className={`${styles.floatingCard} ${styles.pos1}`}>
                     <div className={styles.iconWarning}>⚠️</div>
-                    <p>Inconsistent visual identity confuses customers.</p>
+                    <p>Templates fail to tell your unique story.</p>
                 </div>
 
                 {/* 2 */}
                 <div className={`${styles.floatingCard} ${styles.pos2}`}>
                     <div className={styles.iconWarning}>⚠️</div>
-                    <p>Generic templates blend into the noise.</p>
+                    <p>Users abandon clunky, slow interfaces.</p>
                 </div>
 
                 {/* 3 */}
                 <div className={`${styles.floatingCard} ${styles.pos3}`}>
                     <div className={styles.iconWarning}>⚠️</div>
-                    <p>Slow user experience kills conversions.</p>
+                    <p>Inconsistency creates customer distrust.</p>
                 </div>
 
                 {/* 4 */}
                 <div className={`${styles.floatingCard} ${styles.pos4}`}>
                     <div className={styles.iconWarning}>⚠️</div>
-                    <p>Hidden tech debt limits scalability.</p>
+                    <p>Weak branding limits pricing power.</p>
                 </div>
             </div>
         </section>
