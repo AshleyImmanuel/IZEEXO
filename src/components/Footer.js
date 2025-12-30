@@ -22,7 +22,7 @@ export default function Footer() {
                     </h2>
 
                     <Link href="/contact" className={styles.ctaButton}>
-                        Start a Project <FaArrowRight className={styles.btnIcon} />
+                        Start A Project <FaArrowRight className={styles.btnIcon} />
                     </Link>
                 </div>
 
@@ -38,7 +38,7 @@ export default function Footer() {
                             <h3 className={styles.brandName}>IZEEXO.</h3>
                         </div>
                         <p className={styles.brandDesc}>
-                            A premium design studio visualizing the extraordinary for forward-thinking brands.
+                            A Premium Design Studio Visualizing The Extraordinary For Forward-Thinking Brands.
                         </p>
                         <div className={styles.studioInfo}>
                             <p>EST. 2025</p>
@@ -75,7 +75,7 @@ export default function Footer() {
 
                 {/* 3. BOTTOM BAR */}
                 <div className={styles.bottomBar}>
-                    <p>&copy; 2025 Izeexo. All rights reserved.</p>
+                    <p>&copy; 2025 IZEEXO. All Rights Reserved.</p>
                     <div className={styles.bottomLinks}>
                         <Link href="/privacy">Privacy</Link>
                         <Link href="/terms">Terms</Link>
