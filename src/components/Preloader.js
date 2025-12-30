@@ -7,11 +7,12 @@ import Image from "next/image";
 
 export default function Preloader({ onComplete }) {
     const containerRef = useRef(null);
-    const leftPanelRef = useRef(null);
-    const rightPanelRef = useRef(null);
+    // Refs for the sequence elements
+    const img1Ref = useRef(null);
+    const img2Ref = useRef(null);
+    const img3Ref = useRef(null);
     const logoRef = useRef(null);
-    const lineRef = useRef(null);
-    const textRef = useRef(null);
+    const textWrapperRef = useRef(null);
 
     useEffect(() => {
         const tl = gsap.timeline({
@@ -21,70 +22,78 @@ export default function Preloader({ onComplete }) {
             }
         });
 
-        // Initial State
-        gsap.set(lineRef.current, { height: 0 });
-        gsap.set(textRef.current, { opacity: 0, letterSpacing: "1em" });
+        // Initial setup: Hide everything
+        gsap.set([img1Ref.current, img2Ref.current, img3Ref.current, logoRef.current], { opacity: 0, scale: 1.2 });
+        gsap.set(textWrapperRef.current, { opacity: 0 });
 
+        // --- RAPID FIRE SEQUENCE (Movie Trailer Style) ---
         tl
-            // 1. Logo Fades In
-            .fromTo(logoRef.current,
-                { scale: 0.8, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 1, ease: "power2.out" }
-            )
-            // 2. Center Line Draws (Top to Bottom)
-            .to(lineRef.current, {
-                height: "100vh",
-                duration: 1,
-                ease: "expo.inOut"
-            }, "-=0.5")
-            // 3. Text Reveals (Condensing)
-            .to(textRef.current, {
+            // Image 1: Flash In & Out
+            .to(img1Ref.current, { opacity: 1, duration: 0.1 })
+            .to(img1Ref.current, { scale: 1.3, duration: 0.3, ease: "linear" }, "<")
+            .to(img1Ref.current, { opacity: 0, duration: 0.1 }, "-=0.1")
+
+            // Image 2: Flash In & Out
+            .to(img2Ref.current, { opacity: 1, duration: 0.1 })
+            .to(img2Ref.current, { scale: 1.3, duration: 0.3, ease: "linear" }, "<")
+            .to(img2Ref.current, { opacity: 0, duration: 0.1 }, "-=0.1")
+
+            // Image 3: Flash In & Out
+            .to(img3Ref.current, { opacity: 1, duration: 0.1 })
+            .to(img3Ref.current, { scale: 1.3, duration: 0.3, ease: "linear" }, "<")
+            .to(img3Ref.current, { opacity: 0, duration: 0.1 }, "-=0.1")
+
+            // THE MAIN EVENT: Logo Crashes In
+            .to(logoRef.current, {
                 opacity: 1,
-                letterSpacing: "0.2em",
-                duration: 1,
-                ease: "power3.out"
-            }, "-=0.5")
-
-            // 4. Pause
-            .to({}, { duration: 0.5 })
-
-            // 5. THE SPLIT (Open Doors)
-            .to([logoRef.current, textRef.current, lineRef.current], {
-                opacity: 0,
-                duration: 0.3
+                scale: 1,
+                duration: 0.5,
+                ease: "power4.out"
             })
-            .to(leftPanelRef.current, {
-                xPercent: -100,
-                duration: 1.2,
-                ease: "power3.inOut"
-            }, "split")
-            .to(rightPanelRef.current, {
-                xPercent: 100,
-                duration: 1.2,
-                ease: "power3.inOut"
-            }, "split");
+
+            // Text Slides Up behind Logo
+            .to(textWrapperRef.current, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            }, "-=0.3")
+
+            // Hold for impact
+            .to({}, { duration: 0.8 })
+
+            // REVEAL: Slide Up
+            .to(containerRef.current, {
+                yPercent: -100,
+                duration: 0.8,
+                ease: "power4.inOut"
+            });
 
     }, [onComplete]);
 
     return (
         <div className={styles.preloader} ref={containerRef}>
-            <div className={styles.panel} ref={leftPanelRef} style={{ left: 0 }}></div>
-            <div className={styles.panel} ref={rightPanelRef} style={{ right: 0 }}></div>
 
-            <div className={styles.centerLine} ref={lineRef}></div>
+            {/* Asset Layers (Absolute Centered) */}
+            <div className={styles.assetLayer} ref={img1Ref}>
+                <Image src="/assets/sketch.png" alt="Sketch" width={300} height={300} className={styles.assetImg} priority />
+            </div>
+            <div className={styles.assetLayer} ref={img2Ref}>
+                <Image src="/assets/pattern.png" alt="Pattern" width={300} height={300} className={styles.assetImg} priority />
+            </div>
+            <div className={styles.assetLayer} ref={img3Ref}>
+                <Image src="/assets/logos.png" alt="Design" width={300} height={300} className={styles.assetImg} priority />
+            </div>
 
-            <div className={styles.content}>
+            {/* Final Logo State */}
+            <div className={styles.finalContent}>
                 <div className={styles.logoWrapper} ref={logoRef}>
-                    <Image
-                        src="/logo.jpg"
-                        alt="Izeexo Logo"
-                        width={140}
-                        height={140}
-                        priority
-                        className={styles.logo}
-                    />
+                    <Image src="/logo.jpg" alt="Izeexo Logo" width={160} height={160} className={styles.logo} priority />
                 </div>
-                <h2 className={styles.brandName} ref={textRef}>IZEEXO</h2>
+                <div className={styles.textWrapper} ref={textWrapperRef}>
+                    <h1 className={styles.title}>IZEEXO</h1>
+                    <p className={styles.tagline}>VISUALIZING THE EXTRAORDINARY</p>
+                </div>
             </div>
         </div>
     );
