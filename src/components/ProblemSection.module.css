@@ -45,73 +45,9 @@
     margin: 0 auto;
 }
 
-.floatingCard {
-    position: absolute;
-    /* Dark card to match black theme */
-    background: #111;
-    border: 1px solid #222;
-    color: #eee;
-    padding: 1.5rem;
-    border-radius: 12px;
-    width: 260px;
-    z-index: 5;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    /* No transitions/animations */
-}
-
-.iconWarning {
-    color: #2563eb;
-    /* Blue-600 */
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    background: #eff6ff;
-    /* Blue-50 */
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1rem;
-    border: 1px solid #2563eb;
-}
-
-/* Positioning - Static */
-.pos1 {
-    top: 15%;
-    left: 5%;
-}
-
-.pos2 {
-    top: 20%;
-    right: 5%;
-}
-
-.pos3 {
-    bottom: 15%;
-    left: 10%;
-}
-
-.pos4 {
-    bottom: 20%;
-    right: 5%;
-}
+/* Floating elements removed */
 
 @media (max-width: 768px) {
-    .floatingCard {
-        position: relative;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        margin: 1rem auto;
-        width: 100%;
-    }
-
     .section {
         flex-direction: column;
         padding: 6rem 0;
