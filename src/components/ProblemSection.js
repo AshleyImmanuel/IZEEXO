@@ -15,31 +15,7 @@ export default function ProblemSection() {
                         Your clothing needs a story. Don't let a weak identity ruin your collection.
                     </p>
                 </div>
-
-                {/* Floating Cards - Static now */}
-                {/* 1 */}
-                <div className={`${styles.floatingCard} ${styles.pos1}`}>
-                    <div className={styles.iconWarning}>!</div>
-                    <p>Generic logos don't build hype.</p>
-                </div>
-
-                {/* 2 */}
-                <div className={`${styles.floatingCard} ${styles.pos2}`}>
-                    <div className={styles.iconWarning}>!</div>
-                    <p>Inconsistent style confuses buyers.</p>
-                </div>
-
-                {/* 3 */}
-                <div className={`${styles.floatingCard} ${styles.pos3}`}>
-                    <div className={styles.iconWarning}>!</div>
-                    <p>Low-quality visuals cheapen the fabric.</p>
-                </div>
-
-                {/* 4 */}
-                <div className={`${styles.floatingCard} ${styles.pos4}`}>
-                    <div className={styles.iconWarning}>!</div>
-                    <p>Bad websites kill impulse buys.</p>
-                </div>
+                {/* Floating cards removed per user request */}
             </div>
         </section>
     );
