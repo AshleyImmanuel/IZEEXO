@@ -50,7 +50,7 @@ export default function AboutSnippet() {
                         </div>
                         <div className={styles.statBox}>
                             <span className={styles.statNumber}>100+</span>
-                            <span className={styles.statLabel}>Projects Delivered</span>
+                            <span className={styles.statLabel}>Designs Delivered</span>
                         </div>
                         <div className={styles.statBox}>
                             <span className={styles.statNumber}>100%</span>
