@@ -15,18 +15,24 @@
     position: absolute;
     top: 0;
     width: 50vw;
-    /* Half width */
     height: 100vh;
-    background-color: #000;
+    background-color: #ffffff;
+    /* White Theme */
     z-index: 1;
+    /* Subtle Grid Pattern */
+    background-image:
+        linear-gradient(#f0f0f0 1px, transparent 1px),
+        linear-gradient(90deg, #f0f0f0 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: center center;
 }
 
 .centerLine {
     position: absolute;
     top: 0;
     width: 2px;
-    background: #2563eb;
-    /* Brand Blue */
+    background: #000;
+    /* Minimalist Black Line */
     z-index: 2;
     left: 50%;
     transform: translateX(-50%);
@@ -45,12 +51,14 @@
     width: 140px;
     height: 140px;
     border-radius: 50%;
-    background: #000;
-    border: 2px solid #333;
+    background: #fff;
+    border: 1px solid #e5e5e5;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
 }
 
 .logo {
@@ -59,11 +67,14 @@
 }
 
 .brandName {
-    color: #fff;
+    color: #000;
+    /* Black text */
     font-size: 2rem;
     font-weight: 300;
     text-transform: uppercase;
-    background: #000;
-    /* Hide line behind if needed */
+    background: #ffffff;
     padding: 0 1rem;
+    letter-spacing: 0.2em;
+    border: 1px solid #f0f0f0;
+    /* Optional border for tag feel */
 }
