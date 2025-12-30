@@ -13,51 +13,47 @@
 }
 
 .content {
-    text-align: left;
-    /* key change */
+    text-align: center;
     z-index: 2;
     max-width: 1400px;
-    /* Wider container */
     width: 100%;
-    padding: 0 4rem;
-    /* match About page padding */
+    padding: 0 2rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    /* Align items to start */
+    align-items: center;
 }
 
 /* Badge - Minimal & Sharp */
+/* Badge - Minimal */
 .badge {
     display: inline-block;
-    padding: 0 0 0.5rem 0;
-    background: transparent;
-    color: #444;
-    border-bottom: 1px solid #000;
+    padding: 0.5rem 1rem;
+    background: #f5f5f5;
+    /* Subtle pill bg */
+    color: #000;
+    border: none;
     font-size: 0.75rem;
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    border-radius: 0;
+    border-radius: 100px;
 }
 
 /* Title - Massive Editorial */
 /* Title - Premium Editorial, Balanced */
 .title {
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    /* Reduced max size for elegance */
+    font-size: clamp(3rem, 7vw, 6rem);
     font-weight: 800;
     line-height: 1.05;
-    /* More breathing room */
     letter-spacing: -0.03em;
     margin-bottom: 2.5rem;
     color: #000;
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.25rem;
 }
 
@@ -65,38 +61,37 @@
     font-size: 0.4em;
     font-weight: 500;
     letter-spacing: 0.05em;
-    color: #666;
+    color: #888;
     font-family: var(--font-primary);
     font-style: normal;
     text-transform: none;
     margin-bottom: -0.5em;
-    /* Tuck closer */
 }
 
 .highlight {
-    color: #7c3aed;
-    /* Standardized Brand Purple */
+    color: #000;
     display: inline-block;
 }
 
 /* Subtitle - Professional & Clean */
+/* Subtitle - Centered */
 .subtitle {
     font-size: clamp(1.1rem, 1.5vw, 1.25rem);
-    color: #333;
+    color: #444;
     margin-bottom: 3.5rem;
-    max-width: 550px;
-    margin-left: 0;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
     line-height: 1.6;
     font-weight: 400;
-    border-left: 3px solid #7c3aed;
-    /* Standardized Purple */
-    padding-left: 1.5rem;
+    border: none;
+    padding: 0;
 }
 
 .actions {
     display: flex;
     gap: 1.5rem;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
