@@ -1,17 +1,14 @@
 .section {
     padding: 12rem 0;
-    /* Pivot to High-End Light Mode to match Hero/About & Avoid Copyright */
-    background: #ffffff;
-    background-image: radial-gradient(circle at 50% 50%, #f3f0ff 0%, #ffffff 60%);
-    /* Very subtle purple tint */
-    color: #000;
+    /* User request: "plain black with no animation" */
+    background: #000000;
+    color: #fff;
     position: relative;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    perspective: 1000px;
 }
 
 .container {
@@ -29,8 +26,7 @@
 .centerContent {
     text-align: center;
     z-index: 10;
-    max-width: 800px;
-    pointer-events: none;
+    max-width: 900px;
 }
 
 .title {
@@ -38,113 +34,63 @@
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 2rem;
-    color: #000;
+    color: #fff;
     letter-spacing: -0.03em;
 }
 
 .subtitle {
     font-size: 1.25rem;
-    color: #555;
-    /* Dark grey for light mode */
+    color: #888;
     max-width: 600px;
     margin: 0 auto;
-    font-weight: 500;
 }
 
 .floatingCard {
     position: absolute;
-    /* Clean White Glass */
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    color: #000;
+    /* Dark card to match black theme */
+    background: #111;
+    border: 1px solid #222;
+    color: #eee;
     padding: 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-    /* Softer shadow */
+    border-radius: 12px;
     width: 260px;
     z-index: 5;
     display: flex;
     align-items: flex-start;
     gap: 1rem;
     font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: default;
-    transform-style: preserve-3d;
-}
-
-.floatingCard:hover {
-    transform: scale(1.1) translateY(-10px) rotate(0deg) !important;
-    background: #fff;
-    border-color: rgba(139, 92, 246, 0.3);
-    box-shadow: 0 30px 60px -12px rgba(139, 92, 246, 0.15);
-    /* Purple glow */
-    z-index: 50;
-    cursor: pointer;
-}
-
-.floatingCard:active {
-    transform: scale(0.95) !important;
+    font-weight: 500;
+    /* No transitions/animations */
 }
 
 .iconWarning {
-    color: #7c3aed;
-    /* Brand Purple */
+    color: #fff;
     flex-shrink: 0;
     font-size: 1.2rem;
-    background: #f3f0ff;
-    /* Purple tint bg */
+    background: #222;
     padding: 0.5rem;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
-/* Positioning remains same */
+/* Positioning - Static */
 .pos1 {
     top: 15%;
-    left: 0%;
-    transform: rotate(-8deg);
+    left: 5%;
 }
 
 .pos2 {
     top: 20%;
-    right: 2%;
-    transform: rotate(8deg);
+    right: 5%;
 }
 
 .pos3 {
     bottom: 15%;
-    left: 5%;
-    transform: rotate(5deg);
+    left: 10%;
 }
 
 .pos4 {
     bottom: 20%;
-    right: 0%;
-    transform: rotate(-5deg);
-}
-
-@media (max-width: 1200px) {
-    .pos1 {
-        top: 5%;
-        left: 5%;
-    }
-
-    .pos2 {
-        top: 10%;
-        right: 5%;
-    }
-
-    .pos3 {
-        bottom: 10%;
-        left: 5%;
-    }
-
-    .pos4 {
-        bottom: 15%;
-        right: 5%;
-    }
+    right: 5%;
 }
 
 @media (max-width: 768px) {
@@ -154,16 +100,17 @@
         left: auto !important;
         right: auto !important;
         bottom: auto !important;
-        transform: none !important;
         margin: 1rem auto;
         width: 100%;
-        background: #fff;
-        border: 1px solid #eee;
     }
 
     .section {
         flex-direction: column;
         padding: 6rem 0;
-        background: #fff;
+    }
+
+    .container {
+        flex-direction: column;
+        display: block;
     }
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./ServicesBento.module.css";
-import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
@@ -16,13 +15,13 @@ export default function ServicesBento() {
         const cards = gsap.utils.toArray(`.${styles.card}`);
 
         gsap.fromTo(cards,
-            { y: 50, opacity: 0 },
+            { y: 30, opacity: 0 },
             {
                 y: 0,
                 opacity: 1,
-                duration: 0.8,
+                duration: 0.6,
                 stagger: 0.1,
-                ease: "power3.out",
+                ease: "power2.out",
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top 80%",
@@ -34,56 +33,58 @@ export default function ServicesBento() {
     return (
         <section className={styles.section} ref={containerRef}>
             <div className={styles.heading}>
-                <h2 className={styles.title}>Our Expertise</h2>
-                <p className={styles.subtitle}>Comprehensive solutions for modern brands.</p>
+                <h2 className={styles.title}>What We Create</h2>
+                <p className={styles.subtitle}>Tailored design services for fashion & lifestyle brands.</p>
             </div>
 
             <div className={styles.grid}>
-                {/* 1. Large Feature - Strategy */}
+                {/* 1. Large Feature - Brand Identity */}
                 <div className={`${styles.card} ${styles.large}`}>
                     <div className={styles.content}>
-                        <div className={styles.icon}>S</div>
-                        <h3 className={styles.cardTitle}>Digital Strategy & SEO</h3>
+                        <div className={styles.icon}>B</div>
+                        <h3 className={styles.cardTitle}>Brand Identity & Logos</h3>
                         <p className={styles.cardDesc}>
-                            We build the roadmap to your success. From market analysis to SEO optimization,
-                            we ensure your brand reaches the right audience at the right time.
+                            We craft iconic logos and visual systems that define your label.
+                            From tags to typography, we ensure your brand is instantly recognizable.
                         </p>
                     </div>
-                    <div className={styles.graphicCircle} />
+                    <div className={styles.graphicBox} />
                 </div>
 
-                {/* 2. Normal - UI/UX */}
+                {/* 2. Normal - Apparel Design */}
                 <div className={styles.card}>
                     <div className={styles.content}>
-                        <div className={styles.icon} style={{ background: '#8b5cf6' }}>D</div>
-                        <h3 className={styles.cardTitle}>UI/UX Design</h3>
+                        <div className={styles.icon}>A</div>
+                        <h3 className={styles.cardTitle}>Apparel Design</h3>
                         <p className={styles.cardDesc}>
-                            Crafting intuitive, beautiful interfaces that delight users and drive engagement.
+                            From moodboards and sketches to technical packs for production.
                         </p>
                     </div>
                 </div>
 
-                {/* 3. Normal - Dev */}
+                {/* 3. Normal - Merch */}
                 <div className={styles.card}>
                     <div className={styles.content}>
-                        <div className={styles.icon}>C</div>
-                        <h3 className={styles.cardTitle}>Development</h3>
+                        <div className={styles.icon}>M</div>
+                        <h3 className={styles.cardTitle}>Custom Merch</h3>
                         <p className={styles.cardDesc}>
-                            Robust, scalable code. We specialize in Next.js, React, and modern web technologies.
+                            High-quality streetwear and merchandise design that sells out.
                         </p>
                     </div>
+                    <div className={styles.graphicLine} />
                 </div>
 
-                {/* 4. Large Feature - Growth */}
-                <div className={`${styles.card} ${styles.large}`} style={{ gridColumn: 'span 2' }}> {/* Flip logic if needed for asymmetry */}
+                {/* 4. Large Feature - Web Storefronts */}
+                <div className={`${styles.card} ${styles.large}`} style={{ gridColumn: 'span 2' }}>
                     <div className={styles.content}>
-                        <div className={styles.icon} style={{ background: '#000' }}>G</div>
-                        <h3 className={styles.cardTitle}>Brand Growth</h3>
+                        <div className={styles.icon}>W</div>
+                        <h3 className={styles.cardTitle}>Web Storefronts</h3>
                         <p className={styles.cardDesc}>
-                            Data-driven campaigns and creative direction to scale your business to new heights.
+                            We build sleek, high-converting e-commerce experiences (Shopify/Next.js)
+                            specifically tailored for fashion drops and collections.
                         </p>
                     </div>
-                    <div className={styles.graphicLine} style={{ width: '200px' }} />
+                    <div className={styles.graphicBox} style={{ left: '2rem', right: 'auto', background: '#000' }} />
                 </div>
             </div>
         </section>
