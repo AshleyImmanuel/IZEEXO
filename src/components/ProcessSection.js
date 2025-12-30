@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./ProcessSection.module.css";
-import { useState, useRef } from "react";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,93 +11,70 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
     {
         id: "01",
-        title: "Discover",
-        desc: "We start by digging deep, understanding your goals, audience, and challenges. This is where insights surface.",
-        color: "bg-red-500",
-        shape: styles.shapeRed
+        title: "Concept",
+        description: "We start with moodboards, fabric selection, and sketch iterations to define your collection's vibe.",
+        shape: "circle"
     },
     {
         id: "02",
-        title: "Plan",
-        desc: "Next we map out a clear strategy, aligning AI solutions with your vision. Every step is designed to solve real problems.",
-        color: "bg-blue-500",
-        shape: styles.shapeBlue
+        title: "Design",
+        description: "Refining logos, typography, and vectors into high-fidelity tech packs ready for production.",
+        shape: "triangle"
     },
     {
         id: "03",
-        title: "Build",
-        desc: "Then we bring ideas to life, developing custom AI agents and automations. Each solution is crafted to fit seamlessly.",
-        color: "bg-green-500",
-        shape: styles.shapeGreen
+        title: "Sample",
+        description: "Prototyping the physical product or digital storefront to ensure everything fits perfectly.",
+        shape: "cube"
     },
     {
         id: "04",
-        title: "Scale",
-        desc: "Finally we refine and expand, tracking results, improving performance, and scaling your AI systems as your business grows.",
-        color: "bg-purple-500",
-        shape: styles.shapePurple
+        title: "Drop",
+        description: "Launching your brand with hype-building visuals and a seamless checkout experience.",
+        shape: "pill"
     }
 ];
 
 export default function ProcessSection() {
     const sectionRef = useRef(null);
-    const [activeStep, setActiveStep] = useState(0);
-
+    // ... existing logic ...
     useGSAP(() => {
-        const scrollContainer = sectionRef.current.querySelector(`.${styles.scrollContainer}`);
+        const cards = gsap.utils.toArray(`.${styles.stepCard}`);
 
-        ScrollTrigger.create({
-            trigger: scrollContainer,
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true,
-            onUpdate: (self) => {
-                // Calculate which step should be active based on scroll progress
-                const progress = self.progress;
-                const stepIndex = Math.floor(progress * steps.length);
-                const safeIndex = Math.min(stepIndex, steps.length - 1); // Clamp to max index
-                setActiveStep(safeIndex);
-            }
-        });
+        // Simple fade up for steps
+        cards.forEach((card) => {
+            gsap.fromTo(card,
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                    }
+                }
+            )
+        })
 
     }, { scope: sectionRef });
 
     return (
         <section className={styles.section} ref={sectionRef}>
-            <div className={styles.StickyContainer}> {/* Wrapper to keep relative context */}
-                <h2 className={styles.heading}>Our Process</h2>
-            </div>
+            <div className={styles.container}>
+                <div className={styles.header}>
+                    <h2 className={styles.heading}>The Process.</h2>
+                    <p className={styles.subheading}>From rough sketch to sold out.</p>
+                </div>
 
-            <div className={styles.scrollContainer}>
-                <div className={styles.stickyWrapper}>
-                    <div className={styles.contentContainer}>
-                        {/* Text Panel */}
-                        <div className={styles.textPanel}>
-                            {steps.map((step, index) => (
-                                <div
-                                    key={`text-${step.id}`}
-                                    className={`${styles.stepText} ${activeStep === index ? styles.active : ''}`}
-                                >
-                                    <span className={styles.stepNumber}>/{step.id}</span>
-                                    <h3 className={styles.stepTitle}>{step.title}</h3>
-                                    <p className={styles.stepDesc}>{step.desc}</p>
-                                </div>
-                            ))}
+                <div className={styles.stepsGrid}>
+                    {steps.map((step, index) => (
+                        <div key={step.id} className={styles.stepCard}>
+                            <div className={styles.stepNumber}>{step.id}</div>
+                            <h3 className={styles.stepTitle}>{step.title}</h3> {/* Renamed from Discover */}
+                            <p className={styles.stepDesc}>{step.description}</p>
                         </div>
-
-                        {/* Visual Panel */}
-                        <div className={styles.visualPanel}>
-                            {steps.map((step, index) => (
-                                <div
-                                    key={`visual-${step.id}`}
-                                    className={`${styles.visualCard} ${activeStep === index ? styles.active : ''}`}
-                                >
-                                    {/* Placeholder 3D Shape */}
-                                    <div className={`${styles.shape} ${step.shape}`} />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </section>

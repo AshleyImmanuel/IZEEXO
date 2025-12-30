@@ -1,13 +1,16 @@
 .hero {
-    min-height: 90vh;
+    min-height: auto;
+    /* Remove forced height to kill whitespace */
     width: 100%;
     display: flex;
-    /* Flex is good, but maybe grid for structure? Let's stick to flex col for hero content but align left */
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    /* Align top, not center */
     position: relative;
     overflow: hidden;
-    padding-top: var(--nav-height);
+    padding-top: calc(var(--nav-height) + 4rem);
+    /* Tighter top spacing */
+    padding-bottom: 6rem;
     background: #ffffff;
     color: #000;
 }
