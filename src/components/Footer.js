@@ -22,13 +22,13 @@ export default function Footer() {
                     <div className={styles.column}>
                         <h3 className={styles.heading}>Connect</h3>
                         <div className={styles.socialGrid}>
-                            <Link href="https://wa.me/" target="_blank" className={`${styles.socialLink} ${styles.whatsapp}`}>
+                            <Link href="https://wa.me/917907314022?text=Hello%20Izeexo,%20I'm%20interested%20in%20your%20design%20services." target="_blank" className={`${styles.socialLink} ${styles.whatsapp}`}>
                                 <FaWhatsapp />
                             </Link>
-                            <Link href="https://instagram.com" target="_blank" className={`${styles.socialLink} ${styles.instagram}`}>
+                            <Link href="https://instagram.com/Izeexo" target="_blank" className={`${styles.socialLink} ${styles.instagram}`}>
                                 <FaInstagram />
                             </Link>
-                            <Link href="https://youtube.com" target="_blank" className={`${styles.socialLink} ${styles.youtube}`}>
+                            <Link href="https://youtube.com/@izeexo?si=DB__yPiCFTqEWWDU" target="_blank" className={`${styles.socialLink} ${styles.youtube}`}>
                                 <FaYoutube />
                             </Link>
                             <Link href="mailto:hello@izeexo.com" className={`${styles.socialLink} ${styles.email}`}>
