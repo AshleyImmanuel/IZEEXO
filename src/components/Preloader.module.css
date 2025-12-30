@@ -4,8 +4,8 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #000;
-    /* Editorial Black */
+    background-color: #ffffff;
+    /* Clean White */
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -13,30 +13,33 @@
     overflow: hidden;
 }
 
+/* Removed Grain/Vignette for clean look */
+
 .assetLayer {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    /* Slightly larger */
+    height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Blend mode for cool overlap effect? */
-    mix-blend-mode: exclusion;
+    /* Removed mix-blend-mode for solid visibility */
     pointer-events: none;
+    z-index: 10;
 }
 
 .assetImg {
     object-fit: contain;
-    filter: grayscale(100%) contrast(1.2);
-    /* Artistic B&W feel */
+    /* Removed filters - Show full color/detail */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
 }
 
 .finalContent {
     position: relative;
-    z-index: 10;
+    z-index: 60;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,8 +51,9 @@
     height: 160px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid #fff;
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    border: 1px solid #f0f0f0;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -58,23 +62,26 @@
 
 .textWrapper {
     text-align: center;
-    color: #fff;
+    color: #000;
+    /* Black Text */
     transform: translateY(20px);
-    /* Initial offset for slide up */
 }
 
 .title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: 0.2rem;
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    /* Bold modern spacing */
     margin: 0;
     line-height: 1;
 }
 
 .tagline {
     font-size: 0.8rem;
-    letter-spacing: 0.4em;
-    color: #888;
+    letter-spacing: 0.3em;
+    color: #666;
+    /* Dark Grey */
     margin-top: 1rem;
     text-transform: uppercase;
+    font-weight: 600;
 }

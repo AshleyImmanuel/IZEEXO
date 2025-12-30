@@ -62,11 +62,11 @@ export default function Preloader({ onComplete }) {
             // Hold for impact
             .to({}, { duration: 0.8 })
 
-            // REVEAL: Slide Up
+            // REVEAL: Slide Up (Clean)
             .to(containerRef.current, {
                 yPercent: -100,
                 duration: 0.8,
-                ease: "power4.inOut"
+                ease: "power3.inOut"
             });
 
     }, [onComplete]);
