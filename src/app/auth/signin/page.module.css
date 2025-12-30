@@ -1,0 +1,66 @@
+.main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+}
+
+.card {
+    background: var(--bg-main);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.googleBtn {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.googleBtn:hover {
+    background: #f8f8f8;
+    border-color: #ccc;
+}
+
+.footer {
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.homeLink {
+    display: block;
+    margin-top: 1rem;
+    color: var(--color-primary);
+    text-decoration: underline;
+}

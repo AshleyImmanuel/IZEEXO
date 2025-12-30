@@ -1,28 +1,45 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --color-primary: #0044CC;
+  /* Premium Blue */
+  --color-primary-dark: #003399;
+  --color-secondary: #000000;
+  --color-accent: #FFFFFF;
+
+  /* Text Colors */
+  --text-main: #0a0a0a;
+  --text-muted: #666666;
+  --text-light: #ffffff;
+
+  /* Backgrounds */
+  --bg-main: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --bg-dark: #0a0a0a;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+
+  /* Animations */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --max-width: 1400px;
+  --nav-height: 80px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --bg-main: #0a0a0a;
+    --bg-secondary: #1a1a1a;
   }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -30,13 +47,57 @@ body {
   margin: 0;
 }
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Utilities */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  border: 1px solid var(--text-main);
+  background: transparent;
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  background: var(--text-main);
+  color: var(--bg-main);
+  transform: translateY(-2px);
 }

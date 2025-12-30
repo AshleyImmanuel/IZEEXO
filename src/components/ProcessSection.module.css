@@ -1,0 +1,81 @@
+.section {
+    padding: 4rem 0;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(to right, var(--text-main), var(--color-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.card {
+    background: var(--bg-secondary);
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border: 1px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    border-color: rgba(var(--color-primary-rgb), 0.1);
+    background: white;
+}
+
+.card:hover .number {
+    color: rgba(var(--color-primary-rgb), 0.15);
+    transform: scale(1.1);
+}
+
+.number {
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.03);
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    line-height: 1;
+    transition: all 0.3s ease;
+    z-index: 0;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.description {
+    color: var(--text-muted);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 5rem 0;
+    }
+
+    .heading {
+        font-size: 2rem;
+    }
+}

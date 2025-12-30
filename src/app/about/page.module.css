@@ -1,0 +1,242 @@
+.main {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-bottom: 6rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    padding: 0 1rem;
+}
+
+.highlight {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-main) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lead {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Stats Section */
+.statsSection {
+    margin-bottom: 6rem;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.statCard {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cardVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.statValue {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-main);
+    margin-bottom: 0.5rem;
+}
+
+.statLabel {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Content Cards */
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.card {
+    background: white;
+    padding: 4rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.darkCard {
+    background: var(--color-main);
+    color: white;
+}
+
+.darkCard h2 {
+    color: white;
+}
+
+.darkCard p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.card p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+
+.decorativeLine {
+    height: 4px;
+    width: 60px;
+    background: var(--color-primary);
+    margin-top: 2rem;
+    border-radius: 2px;
+}
+
+/* Vision Section */
+.visionSection {
+    margin: 8rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.visionText {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--text-main);
+    max-width: 800px;
+    margin: 0 auto;
+    font-style: italic;
+}
+
+/* Values Grid */
+.valuesSection {
+    margin-bottom: 6rem;
+}
+
+.valuesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.valueCard {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+    border: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.valueCard:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+}
+
+.valueCard h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.valueCard p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 3rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+    }
+
+    .visionText {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        padding: 2.5rem;
+    }
+}
