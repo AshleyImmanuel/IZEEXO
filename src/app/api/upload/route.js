@@ -10,14 +10,6 @@ export async function POST(req) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        // Debug: Log environment variables (without exposing secrets)
-        console.log('Cloudinary Config Check:', {
-            hasCloudName: !!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-            hasApiKey: !!process.env.CLOUDINARY_API_KEY,
-            hasApiSecret: !!process.env.CLOUDINARY_API_SECRET,
-            cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-        });
-
         // Configure Cloudinary directly here to ensure env vars are accessible
         cloudinary.config({
             cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,

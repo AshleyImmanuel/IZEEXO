@@ -3,16 +3,20 @@
 import { SessionProvider } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Preloader from "@/components/Preloader";
+import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/cart/CartDrawer";
 
 export default function Provider({ children }) {
-    const [loading, setLoading] = useState(false);
+    // Default to true to prevent content flash, but check storage immediately if possible
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Only show preloader once per session
         const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
-        if (!hasSeenPreloader) {
-            setLoading(true);
+        if (hasSeenPreloader) {
+            setLoading(false); // Skip if already seen
         }
+        // If not seen, loading is already true, so preloader runs.
     }, []);
 
     const handlePreloaderComplete = () => {
@@ -31,10 +35,13 @@ export default function Provider({ children }) {
 
     return (
         <SessionProvider>
-            {loading && <Preloader onComplete={handlePreloaderComplete} />}
-            <div style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease" }}>
-                {children}
-            </div>
+            <CartProvider>
+                <CartDrawer />
+                {loading && <Preloader onComplete={handlePreloaderComplete} />}
+                <div style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease" }}>
+                    {children}
+                </div>
+            </CartProvider>
         </SessionProvider>
     );
 }

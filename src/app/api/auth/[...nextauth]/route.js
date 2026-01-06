@@ -9,18 +9,13 @@ export const authOptions = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            allowDangerousEmailAccountLinking: true,
         }),
     ],
     callbacks: {
         async session({ session, user }) {
             if (session.user) {
                 session.user.id = user.id;
-
-                // Debugging Admin Role
-                console.log("---- ADMIN CHECK ----");
-                console.log("Session Email:", session.user.email);
-                console.log("Env Admin Email:", process.env.ADMIN_EMAIL);
-                console.log("Match Status:", session.user.email === process.env.ADMIN_EMAIL);
 
                 // Secure Admin Check using Environment Variable
                 if (session.user.email === process.env.ADMIN_EMAIL) {
@@ -44,6 +39,8 @@ export const authOptions = {
         signIn: "/auth/signin",
     },
     secret: process.env.NEXTAUTH_SECRET,
+    // Explicitly set the URL to fix CLIENT_FETCH_ERROR
+    url: process.env.NEXTAUTH_URL || "http://localhost:3000",
 };
 
 const handler = NextAuth(authOptions);

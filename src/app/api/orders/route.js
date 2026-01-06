@@ -45,6 +45,21 @@ export async function POST(req) {
             return NextResponse.json({ error: "User not found" }, { status: 404 });
         }
 
+        // Check for existing order
+        const existingOrder = await prisma.order.findFirst({
+            where: {
+                userId: user.id,
+                productId: product.id,
+                status: {
+                    in: ['PENDING', 'PROCESSING', 'COMPLETED']
+                }
+            }
+        });
+
+        if (existingOrder) {
+            return NextResponse.json({ error: "You have already purchased this design." }, { status: 400 });
+        }
+
         const order = await prisma.order.create({
             data: {
                 userId: user.id,

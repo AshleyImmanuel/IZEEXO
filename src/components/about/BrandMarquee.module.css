@@ -35,13 +35,17 @@
     font-size: 3rem;
     font-weight: 800;
     color: #f2f2f2;
-    /* Very subtle default */
+    /* Visible default */
     text-transform: uppercase;
     transition: all 0.4s ease;
     cursor: default;
     /* Stroke effect for fashion feel */
-    -webkit-text-stroke: 1px #e0e0e0;
+    -webkit-text-stroke: 1px #ccc;
     color: transparent;
+    /* Keep transparent fill for outline look, but darker stroke */
+    color: #e0e0e0;
+    /* Actually let's just make it a solid light gray for better visibility as requested */
+    -webkit-text-stroke: 0;
 }
 
 .brandItem:hover {

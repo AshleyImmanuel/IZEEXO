@@ -2,6 +2,7 @@
 
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../dashboard.module.css";
 import { User, Mail, Shield, LogOut } from "lucide-react";
 
@@ -175,7 +176,7 @@ export default function ProfilePage() {
 
                         <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', color: '#9ca3af', textAlign: 'center', lineHeight: '1.5' }}>
                             Need help with your account?<br />
-                            <a href="/contact" style={{ color: '#6366f1', textDecoration: 'none' }}>Contact Support</a>
+                            <Link href="/contact" style={{ color: '#6366f1', textDecoration: 'none' }}>Contact Support</Link>
                         </p>
                     </div>
                 </div>

@@ -29,7 +29,34 @@ export default function AdminOrdersPage() {
         }
     };
 
-    if (loading) return <div style={{ padding: '2rem' }}>Loading Orders...</div>;
+    if (loading) return (
+        <div className={styles.dashboardPage}>
+            <div style={{
+                height: '60vh',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '1rem',
+                color: '#6b7280'
+            }}>
+                <div style={{
+                    width: '40px',
+                    height: '40px',
+                    border: '3px solid #e5e7eb',
+                    borderTopColor: '#2563eb',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                }} />
+                <style jsx>{`
+                    @keyframes spin {
+                        to { transform: rotate(360deg); }
+                    }
+                `}</style>
+                <span style={{ fontSize: '0.9rem', fontWeight: '500' }}>Fetching Order Data...</span>
+            </div>
+        </div>
+    );
 
     return (
         <div className={styles.dashboardPage}>

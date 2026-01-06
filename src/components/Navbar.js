@@ -6,9 +6,12 @@ import Image from "next/image";
 import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 import { useSession, signOut } from "next-auth/react";
+import { useCart } from "@/context/CartContext";
+import { ShoppingBag } from "lucide-react";
 import "@/components/ui/PillNav.css";
 
 export default function Navbar() {
+    const { setIsCartOpen, cartCount } = useCart();
     const { data: session } = useSession();
     const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -137,6 +140,32 @@ export default function Navbar() {
                                     Login
                                 </Link>
                             )}
+                        </li>
+                        {/* Cart Button */}
+                        <li>
+                            <button
+                                onClick={() => setIsCartOpen(true)}
+                                className="pill"
+                                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', border: 'none', cursor: 'pointer' }}
+                                title="Open Cart"
+                            >
+                                <ShoppingBag size={20} />
+                                {cartCount > 0 && (
+                                    <span style={{
+                                        background: '#0a0a0a',
+                                        color: '#fff',
+                                        borderRadius: '50%',
+                                        width: '20px',
+                                        height: '20px',
+                                        fontSize: '0.75rem',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        {cartCount}
+                                    </span>
+                                )}
+                            </button>
                         </li>
                     </ul>
                 </div>

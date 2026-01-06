@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ProductCard from "@/components/ProductCard";
 import ProductFilters from "@/components/store/ProductFilters";
 import styles from "./page.module.css";
@@ -10,17 +10,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Mock Data
-const categories = ["All", "Logo Design", "Fashion Design", "Branding"];
-const products = [
-    { id: 1, title: "Modern Logo Pack", price: 3999, category: "Logo Design", image: "/assets/logos.png" },
-    { id: 2, title: "Gala Dress Sketch", price: 6999, category: "Fashion Design", image: "/assets/sketch.png" },
-    { id: 3, title: "Costume Pattern Set", price: 9500, category: "Fashion Design", image: "/assets/pattern.png" },
-    { id: 4, title: "Minimalist Brand Guide", price: 2999, category: "Branding", image: "/assets/logos.png" },
-    { id: 5, title: "Abstract Icon Set", price: 1499, category: "Logo Design", image: "/assets/logos.png" },
-    { id: 6, title: "Summer Dress Blueprint", price: 4500, category: "Fashion Design", image: "/assets/sketch.png" },
-];
-
 export default function StorePage() {
     const containerRef = useRef(null);
     const [activeCategory, setActiveCategory] = useState("All");
@@ -28,24 +17,65 @@ export default function StorePage() {
     const [sortOption, setSortOption] = useState("featured");
     const [isSortOpen, setIsSortOpen] = useState(false);
 
-    const [priceFilter, setPriceFilter] = useState(10000); // Default high max price
-    const maxProductPrice = Math.max(...products.map(p => p.price), 0);
+    // State for data
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [dbCategories, setDbCategories] = useState(["All"]);
+
+    // Fetch Initial Data
+    useEffect(() => {
+        async function init() {
+            try {
+                const [prodRes, catRes] = await Promise.all([
+                    fetch('/api/products'),
+                    fetch('/api/admin/categories')
+                ]);
+
+                if (prodRes.ok) {
+                    const data = await prodRes.json();
+                    setProducts(data);
+                }
+
+                if (catRes.ok) {
+                    const cats = await catRes.json();
+                    setDbCategories(["All", ...cats.map(c => c.name)]);
+                }
+            } catch (error) {
+                console.error("Failed to load store data:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        init();
+    }, []);
+
+    const maxProductPrice = products.length > 0 ? Math.max(...products.map(p => p.price), 0) : 10000;
+    const [priceFilter, setPriceFilter] = useState(10000);
+
+    // Update price filter when products load
+    useEffect(() => {
+        if (!loading && products.length > 0) {
+            setPriceFilter(maxProductPrice);
+        }
+    }, [loading, products, maxProductPrice]);
+
 
     useGSAP(() => {
+        if (loading) return; // Don't animate if loading
+
         // Staggered reveal for products when filter changes or on load
         gsap.from(".product-card-anim", {
             y: 50,
             opacity: 0,
             duration: 0.6,
-            delay: 0.6, // Wait for Template fade-in
+            delay: 0.2,
             stagger: 0.1,
             ease: "power2.out",
-            clearProps: "all" // Allow hover effects to work after animation
+            clearProps: "all"
         });
-    }, { scope: containerRef, dependencies: [activeCategory, searchTerm, priceFilter] });
+    }, { scope: containerRef, dependencies: [loading, activeCategory, searchTerm, priceFilter] });
 
     // Filter & Sort Logic
-    // ... (rest of logic)
     const filteredProducts = products
         .filter(product => {
             const matchesCategory = activeCategory === "All" || product.category === activeCategory;
@@ -85,7 +115,7 @@ export default function StorePage() {
                     priceFilter={priceFilter}
                     setPriceFilter={setPriceFilter}
                     maxPrice={maxProductPrice}
-                    categories={categories}
+                    categories={dbCategories}
                     sortLabels={sortLabels}
                 />
 
@@ -96,7 +126,7 @@ export default function StorePage() {
                             <ProductCard product={product} />
                         </div>
                     ))}
-                    {filteredProducts.length === 0 && (
+                    {filteredProducts.length === 0 && !loading && (
                         <div className={styles.noResults}>
                             <p>No products found matching your criteria.</p>
                             <button
@@ -109,6 +139,12 @@ export default function StorePage() {
                             >
                                 Clear Filters
                             </button>
+                        </div>
+                    )}
+                    {loading && (
+                        <div className={styles.loadingState}>
+                            <div className={styles.spinner}></div>
+                            <p className={styles.loadingText}>Loading Products...</p>
                         </div>
                     )}
                 </div>
