@@ -27,27 +27,15 @@ export async function POST(req) {
 
         const folder = formData.get("folder") || "products";
 
-        // Upload directly using cloudinary
+        // Convert file to base64 for direct upload
         const buffer = await file.arrayBuffer();
-        const bytes = Buffer.from(buffer);
+        const base64 = Buffer.from(buffer).toString('base64');
+        const dataURI = `data:${file.type};base64,${base64}`;
 
-        const result = await new Promise((resolve, reject) => {
-            const uploadStream = cloudinary.uploader.upload_stream(
-                {
-                    folder: folder,
-                    resource_type: "auto",
-                    timestamp: Math.round(Date.now() / 1000)
-                },
-                (error, result) => {
-                    if (error) {
-                        console.error("Cloudinary Upload Error:", error);
-                        reject(error);
-                    } else {
-                        resolve(result);
-                    }
-                }
-            );
-            uploadStream.end(bytes);
+        // Use direct upload instead of stream to avoid timestamp issues
+        const result = await cloudinary.uploader.upload(dataURI, {
+            folder: folder,
+            resource_type: "auto"
         });
 
         return NextResponse.json({

@@ -18,21 +18,31 @@ export default function MediaUpload({ mediaUrls = [], onUpdate }) {
 
         try {
             for (const file of files) {
+                console.log("📤 Uploading file:", file.name);
+
+                // Use unsigned upload with preset (no signature/timestamp needed!)
                 const formData = new FormData();
                 formData.append("file", file);
+                formData.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "products_unsigned");
                 formData.append("folder", "products");
 
-                const res = await fetch('/api/upload', {
-                    method: 'POST',
-                    body: formData
-                });
+                console.log("☁️ Uploading to Cloudinary with unsigned preset...");
+                const uploadRes = await fetch(
+                    `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                );
 
-                const data = await res.json();
+                const data = await uploadRes.json();
 
-                if (!res.ok) {
-                    throw new Error(data.error || "Upload failed");
+                if (!uploadRes.ok) {
+                    throw new Error(data.error?.message || "Upload failed");
                 }
-                newUrls.push(data.url);
+
+                console.log("✅ Uploaded successfully:", data.secure_url);
+                newUrls.push(data.secure_url);
             }
 
             onUpdate([...mediaUrls, ...newUrls]);
