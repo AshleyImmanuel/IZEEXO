@@ -177,26 +177,21 @@
         grid-row: span 1;
     }
 
-    .card {
-        padding: 1.5rem;
-        min-height: auto;
-        /* Remove fixed min-height if content pushes it */
-    }
-
-    .cardTitle {
-        font-size: 1.25rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .cardDesc {
-        font-size: 0.95rem;
-    }
-
     .icon {
         width: 36px;
         height: 36px;
         font-size: 1.25rem;
         margin-bottom: 1.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        /* Center the icon */
+    }
+
+    .card {
+        padding: 1.5rem;
+        min-height: auto;
+        text-align: center;
+        /* Center text content */
     }
 
     .title {

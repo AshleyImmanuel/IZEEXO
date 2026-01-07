@@ -200,7 +200,8 @@
 
     .content {
         padding: 1rem;
-        padding-top: calc(var(--nav-height) + 3rem);
+        padding-top: 200px;
+        /* Safe clearance */
         padding-bottom: 3rem;
     }
 
@@ -214,6 +215,22 @@
         font-size: clamp(1.75rem, 9vw, 2.75rem);
         margin-bottom: 1rem;
         line-height: 1.15;
+        animation: mobile-pulse 4s ease-in-out infinite;
+        /* Subtle pulse animation for mobile */
+    }
+
+    @keyframes mobile-pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(1.02);
+            opacity: 0.95;
+        }
     }
 
     .subtitle {
