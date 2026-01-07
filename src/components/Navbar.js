@@ -43,10 +43,11 @@ export default function Navbar() {
     }, [dropdownRef]);
 
 
+
     const navLinks = [
         { label: "Home", href: "/" },
-        { label: "Store", href: "/store" },
         { label: "About", href: "/about" },
+        { label: "Store", href: "/store" },
         { label: "Contact", href: "/contact" },
     ];
 
@@ -194,6 +195,13 @@ export default function Navbar() {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     Dashboard
+                                </Link>
+                                <Link
+                                    href="/dashboard/profile"
+                                    className="mobile-menu-link"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    Profile
                                 </Link>
                                 <button
                                     className="mobile-menu-link logout-link"

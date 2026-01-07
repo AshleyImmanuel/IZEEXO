@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import styles from "@/app/store/page.module.css";
 
 export default function ProductFilters({
@@ -11,12 +12,31 @@ export default function ProductFilters({
     setSortOption,
     isSortOpen,
     setIsSortOpen,
-    priceFilter,
-    setPriceFilter,
+    minPrice,
+    setMinPrice,
     maxPrice,
+    setMaxPrice,
     categories,
     sortLabels
 }) {
+    const dropdownRef = useRef(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsSortOpen(false);
+            }
+        }
+
+        if (isSortOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isSortOpen, setIsSortOpen]);
     return (
         <>
             {/* Controls Section */}
@@ -35,25 +55,52 @@ export default function ProductFilters({
                     </div>
                 </div>
 
-                {/* Price Range Slider */}
-                <div className={styles.sliderWrapper}>
-                    <div className={styles.sliderHeader}>
-                        <span className={styles.sliderLabel}>Max Price</span>
-                        <span className={styles.sliderValue}>₹{priceFilter.toLocaleString("en-IN")}</span>
+
+                {/* Price Range Buttons (Amazon-style) */}
+                <div className={styles.priceRangeWrapper}>
+                    <label className={styles.priceLabel}>Price Range</label>
+                    <div className={styles.priceButtons}>
+                        <button
+                            className={`${styles.priceRangeBtn} ${minPrice === 0 && maxPrice === 1000 ? styles.activeRange : ''}`}
+                            onClick={() => { setMinPrice(0); setMaxPrice(1000); }}
+                        >
+                            Under ₹1,000
+                        </button>
+                        <button
+                            className={`${styles.priceRangeBtn} ${minPrice === 1000 && maxPrice === 2000 ? styles.activeRange : ''}`}
+                            onClick={() => { setMinPrice(1000); setMaxPrice(2000); }}
+                        >
+                            ₹1,000 - ₹2,000
+                        </button>
+                        <button
+                            className={`${styles.priceRangeBtn} ${minPrice === 2000 && maxPrice === 5000 ? styles.activeRange : ''}`}
+                            onClick={() => { setMinPrice(2000); setMaxPrice(5000); }}
+                        >
+                            ₹2,000 - ₹5,000
+                        </button>
+                        <button
+                            className={`${styles.priceRangeBtn} ${minPrice === 5000 && maxPrice === 10000 ? styles.activeRange : ''}`}
+                            onClick={() => { setMinPrice(5000); setMaxPrice(10000); }}
+                        >
+                            ₹5,000 - ₹10,000
+                        </button>
+                        <button
+                            className={`${styles.priceRangeBtn} ${minPrice === 10000 && maxPrice === 20000 ? styles.activeRange : ''}`}
+                            onClick={() => { setMinPrice(10000); setMaxPrice(20000); }}
+                        >
+                            ₹10,000 - ₹20,000
+                        </button>
+                        <button
+                            className={`${styles.priceRangeBtn} ${minPrice === 20000 ? styles.activeRange : ''}`}
+                            onClick={() => { setMinPrice(20000); setMaxPrice(1000000); }}
+                        >
+                            ₹20,000 & Above
+                        </button>
                     </div>
-                    <input
-                        type="range"
-                        min="0"
-                        max={maxPrice}
-                        step="100"
-                        value={priceFilter}
-                        onChange={(e) => setPriceFilter(Number(e.target.value))}
-                        className={styles.rangeInput}
-                    />
                 </div>
 
                 {/* Custom Sort Dropdown */}
-                <div className={styles.sortWrapper}>
+                <div className={styles.sortWrapper} ref={dropdownRef}>
                     <button
                         className={styles.sortButton}
                         onClick={() => setIsSortOpen(!isSortOpen)}
@@ -87,16 +134,19 @@ export default function ProductFilters({
             </div>
 
             {/* Categories */}
-            <div className={styles.filterBar}>
-                {categories.map((cat) => (
-                    <button
-                        key={cat}
-                        className={`${styles.filterBtn} ${activeCategory === cat ? styles.active : ""}`}
-                        onClick={() => setActiveCategory(cat)}
-                    >
-                        {cat}
-                    </button>
-                ))}
+            <div className={styles.categorySection}>
+                <h3 className={styles.categoryLabel}>Categories</h3>
+                <div className={styles.filterBar}>
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            className={`${styles.filterBtn} ${activeCategory === cat ? styles.active : ""}`}
+                            onClick={() => setActiveCategory(cat)}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
             </div>
         </>
     );

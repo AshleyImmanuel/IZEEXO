@@ -24,9 +24,9 @@ export default function ProfilePage() {
 
                 {/* Main Profile Card */}
                 <div className={styles.leftColumn}>
-                    <div className={styles.card}>
-                        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '2rem' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                    <div className={styles.card} style={{ padding: '2rem 1rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '2rem', width: '100%' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
                                 <div style={{
                                     width: '100px',
                                     height: '100px',
@@ -42,6 +42,7 @@ export default function ProfilePage() {
                                             src={session.user.image}
                                             alt={session.user.name}
                                             fill
+                                            sizes="100px"
                                             style={{ objectFit: 'cover' }}
                                         />
                                     ) : (
@@ -60,10 +61,10 @@ export default function ProfilePage() {
                                     )}
                                 </div>
                                 <div>
-                                    <h2 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#111827', margin: '0 0 0.25rem 0' }}>
+                                    <h2 style={{ fontSize: '1.5rem', fontWeight: '700', color: '#111827', margin: '0 0 0.25rem 0', textAlign: 'center' }}>
                                         {session.user.name}
                                     </h2>
-                                    <p style={{ color: '#6b7280', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <p style={{ color: '#6b7280', margin: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
                                         <span style={{
                                             display: 'inline-block',
                                             width: '8px',
@@ -77,7 +78,7 @@ export default function ProfilePage() {
                             </div>
                         </div>
 
-                        <div style={{ display: 'grid', gap: '1.5rem' }}>
+                        <div style={{ display: 'grid', gap: '1.5rem', width: '100%', textAlign: 'left' }}>
                             <div>
                                 <label style={{ display: 'block', textTransform: 'uppercase', fontSize: '0.75rem', fontWeight: '600', color: '#9ca3af', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
                                     Full Name
@@ -142,7 +143,42 @@ export default function ProfilePage() {
                     <div className={styles.recentActivityCard} style={{ background: '#fff', border: '1px solid #e5e7eb' }}>
                         <h3 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: '1rem', color: '#111827' }}>Account Actions</h3>
 
-
+                        {/* Manage Google Account */}
+                        <a
+                            href="https://myaccount.google.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                width: '100%',
+                                padding: '1rem',
+                                background: '#f0f9ff',
+                                color: '#0284c7',
+                                border: '1px solid #bae6fd',
+                                borderRadius: '12px',
+                                fontWeight: '600',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '0.75rem',
+                                transition: 'all 0.2s',
+                                textDecoration: 'none',
+                                marginBottom: '1rem'
+                            }}
+                            onMouseOver={(e) => {
+                                e.currentTarget.style.background = '#e0f2fe';
+                                e.currentTarget.style.borderColor = '#7dd3fc';
+                            }}
+                            onMouseOut={(e) => {
+                                e.currentTarget.style.background = '#f0f9ff';
+                                e.currentTarget.style.borderColor = '#bae6fd';
+                            }}
+                        >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                            Manage Google Account
+                        </a>
 
                         <button
                             onClick={() => signOut({ callbackUrl: '/' })}

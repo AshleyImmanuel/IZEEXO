@@ -14,7 +14,7 @@ export default function StorePage() {
     const containerRef = useRef(null);
     const [activeCategory, setActiveCategory] = useState("All");
     const [searchTerm, setSearchTerm] = useState("");
-    const [sortOption, setSortOption] = useState("featured");
+    const [sortOption, setSortOption] = useState("none");
     const [isSortOpen, setIsSortOpen] = useState(false);
 
     // State for data
@@ -22,23 +22,29 @@ export default function StorePage() {
     const [loading, setLoading] = useState(true);
     const [dbCategories, setDbCategories] = useState(["All"]);
 
+    // Price range state (Amazon-style)
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(100000); // High default max
+
     // Fetch Initial Data
     useEffect(() => {
         async function init() {
             try {
-                const [prodRes, catRes] = await Promise.all([
-                    fetch('/api/products'),
-                    fetch('/api/admin/categories')
-                ]);
+                const prodRes = await fetch('/api/products');
 
                 if (prodRes.ok) {
                     const data = await prodRes.json();
                     setProducts(data);
-                }
 
-                if (catRes.ok) {
-                    const cats = await catRes.json();
-                    setDbCategories(["All", ...cats.map(c => c.name)]);
+                    // Set max price to highest product price
+                    if (data.length > 0) {
+                        const highest = Math.max(...data.map(p => p.price));
+                        setMaxPrice(highest);
+
+                        // Extract unique categories from products
+                        const uniqueCategories = [...new Set(data.map(p => p.category))];
+                        setDbCategories(["All", ...uniqueCategories]);
+                    }
                 }
             } catch (error) {
                 console.error("Failed to load store data:", error);
@@ -48,16 +54,6 @@ export default function StorePage() {
         }
         init();
     }, []);
-
-    const maxProductPrice = products.length > 0 ? Math.max(...products.map(p => p.price), 0) : 10000;
-    const [priceFilter, setPriceFilter] = useState(10000);
-
-    // Update price filter when products load
-    useEffect(() => {
-        if (!loading && products.length > 0) {
-            setPriceFilter(maxProductPrice);
-        }
-    }, [loading, products, maxProductPrice]);
 
 
     useGSAP(() => {
@@ -73,23 +69,26 @@ export default function StorePage() {
             ease: "power2.out",
             clearProps: "all"
         });
-    }, { scope: containerRef, dependencies: [loading, activeCategory, searchTerm, priceFilter] });
+    }, { scope: containerRef, dependencies: [loading, activeCategory, searchTerm, minPrice, maxPrice] });
 
     // Filter & Sort Logic
     const filteredProducts = products
         .filter(product => {
             const matchesCategory = activeCategory === "All" || product.category === activeCategory;
             const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
-            const matchesPrice = product.price <= priceFilter;
+            const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
             return matchesCategory && matchesSearch && matchesPrice;
         })
         .sort((a, b) => {
+            if (sortOption === "none") return 0; // No sorting - keep original order
+            if (sortOption === "featured") return 0; // Featured - keep original order (can be customized later)
             if (sortOption === "price-low") return a.price - b.price;
             if (sortOption === "price-high") return b.price - a.price;
-            return 0; // featured/default
+            return 0; // default
         });
 
     const sortLabels = {
+        "none": "Sort by: None",
         "featured": "Sort by: Featured",
         "price-low": "Price: Low to High",
         "price-high": "Price: High to Low"
@@ -112,9 +111,10 @@ export default function StorePage() {
                     setSortOption={setSortOption}
                     isSortOpen={isSortOpen}
                     setIsSortOpen={setIsSortOpen}
-                    priceFilter={priceFilter}
-                    setPriceFilter={setPriceFilter}
-                    maxPrice={maxProductPrice}
+                    minPrice={minPrice}
+                    setMinPrice={setMinPrice}
+                    maxPrice={maxPrice}
+                    setMaxPrice={setMaxPrice}
                     categories={dbCategories}
                     sortLabels={sortLabels}
                 />
@@ -134,7 +134,9 @@ export default function StorePage() {
                                 onClick={() => {
                                     setSearchTerm("");
                                     setActiveCategory("All");
-                                    setPriceFilter(maxProductPrice);
+                                    setMinPrice(0);
+                                    const highest = products.length > 0 ? Math.max(...products.map(p => p.price)) : 100000;
+                                    setMaxPrice(highest);
                                 }}
                             >
                                 Clear Filters

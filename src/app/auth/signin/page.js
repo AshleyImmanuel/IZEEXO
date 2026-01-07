@@ -22,6 +22,15 @@ export default function SignIn() {
 
     const searchParams = useSearchParams();
     const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+    const error = searchParams.get("error");
+
+    // Error messages
+    const errorMessages = {
+        OAuthAccountNotLinked: "There's an issue with your account. Please try clearing your browser cookies and cache, then try again. If the problem persists, contact support.",
+        OAuthSignin: "Error connecting to Google. Please try again.",
+        OAuthCallback: "Error during sign in. Please try again.",
+        Default: "An error occurred during sign in. Please try again."
+    };
 
     const handleGoogleSignIn = async () => {
         setIsLoading(true);
@@ -83,6 +92,22 @@ export default function SignIn() {
                 <div ref={formRef} className={styles.formContainer}>
                     <h2 className={styles.formTitle}>Welcome back</h2>
                     <p className={styles.formSubtitle}>Please sign in to access your dashboard.</p>
+
+                    {/* Error Display */}
+                    {error && (
+                        <div style={{
+                            padding: '1rem',
+                            marginBottom: '1.5rem',
+                            backgroundColor: '#FEE2E2',
+                            border: '1px solid #FCA5A5',
+                            borderRadius: '8px',
+                            color: '#991B1B',
+                            fontSize: '0.9rem',
+                            lineHeight: '1.5'
+                        }}>
+                            {errorMessages[error] || errorMessages.Default}
+                        </div>
+                    )}
 
                     <button
                         onClick={handleGoogleSignIn}

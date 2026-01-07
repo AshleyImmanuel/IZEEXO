@@ -7,6 +7,15 @@
     flex-direction: column;
 }
 
+.dashboardPage {
+    min-height: 100vh;
+    background: #fdfdfd;
+    padding-top: 120px;
+    /* Clear the fixed navigation */
+    padding-bottom: 3rem;
+}
+
+
 .mainWrapper {
     max-width: 1400px;
     width: 100%;
