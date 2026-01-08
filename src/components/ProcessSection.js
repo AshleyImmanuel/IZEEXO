@@ -12,7 +12,7 @@ const steps = [
     {
         id: "01",
         title: "Concept",
-        description: "We start with moodboards, fabric selection, and sketch iterations to define your collection's vibe.",
+        description: "We start with moodboards, visual exploration, and style direction to define your brand's unique vibe.",
         shape: "circle"
     },
     {
