@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { uploadToCloudinary } from "@/lib/cloudinary";
 import prisma from "@/lib/prisma";
 
+
+export const dynamic = 'force-dynamic';
 export async function POST(request) {
     try {
         const formData = await request.formData();

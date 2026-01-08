@@ -1,7 +1,9 @@
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../../auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { NextResponse } from "next/server";
+
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
     try {

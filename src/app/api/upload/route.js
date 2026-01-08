@@ -3,6 +3,8 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { v2 as cloudinary } from 'cloudinary';
 
+
+export const dynamic = 'force-dynamic';
 export async function POST(req) {
     try {
         const session = await getServerSession(authOptions);
