@@ -26,7 +26,7 @@ export default function Footer() {
                         <p className={styles.brandDesc}>
                             A Premium Design Studio Visualizing The Extraordinary For Forward-Thinking Brands.
                         </p>
-                        <Link href="/contact" className={styles.ctaButton}>
+                        <Link href="/contact" className={styles.ctaButton} prefetch={false}>
                             For Custom Designs or Logo <FaArrowRight className={styles.btnIcon} />
                         </Link>
                         <div className={styles.studioInfo}>
@@ -39,9 +39,9 @@ export default function Footer() {
                     <div className={styles.footerLinksGroup}>
                         <div className={styles.footerLinkCol}>
                             <h4>EXPLORE</h4>
-                            <Link href="/">Home</Link>
-                            <Link href="/store">Store</Link>
-                            <Link href="/about">About</Link>
+                            <Link href="/" prefetch={false}>Home</Link>
+                            <Link href="/store" prefetch={false}>Store</Link>
+                            <Link href="/about" prefetch={false}>About</Link>
                         </div>
 
                         <div className={styles.footerLinkCol}>
@@ -68,9 +68,9 @@ export default function Footer() {
                 <div className={styles.bottomBar}>
                     <p>&copy; 2025 IZEEXO. All Rights Reserved.</p>
                     <div className={styles.bottomLinks}>
-                        <Link href="/privacy">Privacy</Link>
+                        <Link href="/privacy" prefetch={false}>Privacy</Link>
                         <span style={{ margin: "0 0.5rem" }}>|</span>
-                        <Link href="/terms">Terms</Link>
+                        <Link href="/terms" prefetch={false}>Terms</Link>
                     </div>
                 </div>
 

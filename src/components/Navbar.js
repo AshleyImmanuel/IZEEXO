@@ -107,6 +107,7 @@ export default function Navbar() {
                                 <Link
                                     href="/dashboard"
                                     className={`pill ${activePath.startsWith('/dashboard') ? 'is-active' : ''}`}
+                                    prefetch={false}
                                 >
                                     Dashboard
                                 </Link>
@@ -120,6 +121,7 @@ export default function Navbar() {
                                     href="/dashboard/profile"
                                     className="pill pill-avatar"
                                     title="Profile Settings"
+                                    prefetch={false}
                                 >
                                     <div className="avatar-wrapper">
                                         {session.user.image ? (
@@ -138,7 +140,7 @@ export default function Navbar() {
                                     </div>
                                 </Link>
                             ) : (
-                                <Link href="/auth/signin" className="pill">
+                                <Link href="/auth/signin" className="pill" prefetch={false}>
                                     Login
                                 </Link>
                             )}
@@ -182,7 +184,7 @@ export default function Navbar() {
                 <ul className="mobile-menu-list">
                     {navLinks.map((item) => (
                         <li key={item.href}>
-                            <Link href={item.href} className="mobile-menu-link" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Link href={item.href} className="mobile-menu-link" onClick={() => setIsMobileMenuOpen(false)} prefetch={false}>
                                 {item.label}
                             </Link>
                         </li>
@@ -221,6 +223,7 @@ export default function Navbar() {
                                     href="/dashboard"
                                     className="mobile-menu-link"
                                     onClick={() => setIsMobileMenuOpen(false)}
+                                    prefetch={false}
                                 >
                                     Dashboard
                                 </Link>
@@ -228,6 +231,7 @@ export default function Navbar() {
                                     href="/dashboard/profile"
                                     className="mobile-menu-link"
                                     onClick={() => setIsMobileMenuOpen(false)}
+                                    prefetch={false}
                                 >
                                     Profile
                                 </Link>
@@ -243,6 +247,7 @@ export default function Navbar() {
                                 href="/auth/signin"
                                 className="mobile-menu-link"
                                 onClick={() => setIsMobileMenuOpen(false)}
+                                prefetch={false}
                             >
                                 Login
                             </Link>

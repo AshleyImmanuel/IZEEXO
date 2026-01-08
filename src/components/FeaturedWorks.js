@@ -49,7 +49,7 @@ export default function FeaturedWorks() {
             <div className="container">
                 <div className={styles.header}>
                     <h2 className={styles.title}>Selected Works</h2>
-                    <Link href="/store" className={styles.viewAll}>
+                    <Link href="/store" className={styles.viewAll} prefetch={false}>
                         View All Projects &rarr;
                     </Link>
                 </div>

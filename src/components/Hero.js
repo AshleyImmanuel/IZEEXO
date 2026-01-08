@@ -80,10 +80,10 @@ export default function Hero() {
                 </p>
 
                 <div className={styles.buttonGroup}>
-                    <Link href="/store" className={styles.primaryButton}>
+                    <Link href="/store" className={styles.primaryButton} prefetch={false}>
                         Explore Store
                     </Link>
-                    <Link href="/about" className={styles.secondaryButton}>
+                    <Link href="/about" className={styles.secondaryButton} prefetch={false}>
                         Learn More
                     </Link>
                 </div>
