@@ -17,20 +17,22 @@ export default function DashboardLayout({ children }) {
         }
     }, [status, router]);
 
-    if (status === "loading") {
-        return <DashboardLoader text="AUTHENTICATING..." />;
-    }
 
-    if (!session) {
-        return null;
-    }
-
+    // Unified render structure to ensure CSS is always "used" preventing preload warnings
     return (
         <div className={styles.dashboardLayout}>
-            <Navbar />
-            <main className={styles.mainWrapper}>
-                {children}
-            </main>
+            {status === "loading" ? (
+                <DashboardLoader text="AUTHENTICATING..." />
+            ) : !session ? (
+                null // Will redirect via useEffect
+            ) : (
+                <>
+                    <Navbar />
+                    <main className={styles.mainWrapper}>
+                        {children}
+                    </main>
+                </>
+            )}
         </div>
     );
 }
