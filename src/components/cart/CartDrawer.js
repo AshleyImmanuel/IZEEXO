@@ -71,9 +71,9 @@ export default function CartDrawer() {
                         cart.map((item) => (
                             <div key={item.id} className={styles.item}>
                                 <div className={styles.itemImageWrapper}>
-                                    {item.image ? (
+                                    {(item.image || (item.images && item.images.length > 0)) ? (
                                         <Image
-                                            src={item.image}
+                                            src={item.image || item.images[0]}
                                             alt={item.title}
                                             width={80}
                                             height={80}

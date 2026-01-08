@@ -28,7 +28,11 @@ export default function ProductDetails({ product }) {
     }) : [{ type: 'image', src: '/placeholder.jpg' }];
 
     const handleAddToCart = () => {
-        addToCart(product);
+        const itemToAdd = {
+            ...product,
+            image: product.image || (product.images && product.images[0]) || '/placeholder.jpg'
+        };
+        addToCart(itemToAdd);
         toast.success("Added to cart!");
     };
 
