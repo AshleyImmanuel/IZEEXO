@@ -343,7 +343,8 @@
     }
 
     .hero {
-        padding-top: 100px;
+        padding-top: 180px;
+        /* Increased to match Home page spacing */
         padding-bottom: 2rem;
         min-height: auto;
     }

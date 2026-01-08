@@ -317,6 +317,13 @@
     }
 }
 
+@media (max-width: 768px) {
+    .main {
+        padding-top: 180px;
+        /* Match global mobile spacing */
+    }
+}
+
 /* Loading State */
 .loadingState {
     grid-column: 1 / -1;

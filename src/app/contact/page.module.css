@@ -202,6 +202,11 @@
 }
 
 @media (max-width: 768px) {
+    .main {
+        padding-top: 180px;
+        /* Match global mobile spacing */
+    }
+
     .linksGrid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
