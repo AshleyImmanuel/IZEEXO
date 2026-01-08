@@ -196,8 +196,8 @@
     .hero {
         padding-top: 0;
         padding-bottom: 3rem;
-        margin-top: 140px;
-        /* SIGNIFICANT gap to match reference */
+        margin-top: 180px;
+        /* "Not enough" -> Aggressive 180px gap */
     }
 
     .content {
