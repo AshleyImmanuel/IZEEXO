@@ -86,7 +86,6 @@ export default function ProductDetails({ product }) {
                                         fill
                                         className={styles.mainMedia}
                                         style={{ objectFit: 'contain' }}
-                                        priority={activeIndex === 0}
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                         unoptimized
                                     />
