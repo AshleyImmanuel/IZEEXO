@@ -127,7 +127,7 @@ export default function StorePage() {
                 <div className={styles.grid}>
                     {filteredProducts.map((product, index) => (
                         <div key={product.id} className="product-card-anim">
-                            <ProductCard product={product} priority={index === 0} />
+                            <ProductCard product={product} />
                         </div>
                     ))}
                     {filteredProducts.length === 0 && !loading && (
