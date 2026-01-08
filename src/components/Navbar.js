@@ -82,7 +82,7 @@ export default function Navbar() {
     return (
         <div className="pill-nav-container">
             <nav className="pill-nav">
-                <Link href="/" className="pill-logo" ref={logoRef}>
+                <Link href="/" className="pill-logo" ref={logoRef} prefetch={false}>
                     <Image src="/logo.jpg" alt="Izeexo" width={40} height={40} />
                 </Link>
 
@@ -94,6 +94,7 @@ export default function Navbar() {
                                 <Link
                                     href={item.href}
                                     className={`pill ${activePath === item.href ? 'is-active' : ''}`}
+                                    prefetch={false}
                                 >
                                     {item.label}
                                 </Link>
