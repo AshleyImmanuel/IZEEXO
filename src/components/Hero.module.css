@@ -195,70 +195,64 @@
 @media (max-width: 768px) {
     .hero {
         padding-top: 0;
-        padding-bottom: 2rem;
-        margin-top: 90px;
-        /* Clear the fixed navigation bar (20px padding + ~52px nav + buffer) */
+        padding-bottom: 3rem;
+        margin-top: 100px;
+        /* More breathing room from nav */
     }
 
     .content {
         padding: 1rem;
-        padding-top: 20px;
-        /* Minimal top padding since hero has margin-top */
-        padding-bottom: 3rem;
+        padding-top: 0;
+        padding-bottom: 2rem;
     }
 
     .badge {
+        display: inline-block;
+        /* Show badge again but smaller? No, keep hidden for cleaner look */
         display: none;
-        /* Hidden on mobile to reduce congestion */
     }
 
     .title {
-        font-size: clamp(2rem, 9vw, 2.8rem);
-        /* Slightly larger now that badge is gone */
-        margin-bottom: 1.25rem;
-        line-height: 1.15;
-    }
-
-    @keyframes mobile-pulse {
-
-        0%,
-        100% {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        50% {
-            transform: scale(1.02);
-            opacity: 0.95;
-        }
+        font-size: clamp(2rem, 8vw, 2.5rem);
+        /* Slightly more restrained */
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        /* Better readability */
     }
 
     .subtitle {
         font-size: 1rem;
-        margin-bottom: 1.25rem;
-        padding: 0 0.5rem;
-        line-height: 1.5;
+        margin-bottom: 2rem;
+        /* More space before buttons */
+        padding: 0 1rem;
+        line-height: 1.6;
+        opacity: 0.9;
     }
 
     .buttonGroup {
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 1rem;
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
+        /* Limit width so they don't stretch too far */
     }
 
     .primaryButton,
     .secondaryButton {
-        padding: 0.75rem 1.5rem;
+        padding: 0.9rem 1.5rem;
+        /* Taller touch target */
         width: 100%;
         text-align: center;
+        font-size: 1rem;
     }
 
     .bgCircle {
-        width: 120vw;
-        height: 120vw;
-        top: 10%;
-        right: -30%;
+        width: 100vw;
+        height: 100vw;
+        top: 5%;
+        right: -20%;
+        opacity: 0.6;
+        /* Fade it out a bit so text pops more */
     }
 }
 
