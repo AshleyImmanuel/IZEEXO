@@ -39,32 +39,33 @@ export default function DesignsPage() {
                     <p>No designs found.</p>
                 </div>
             ) : (
-                <div key={project.id} className={styles.projectCard}>
-                    <div className={styles.projectHeader}>
-                        <h3>{project.designType}</h3>
-                        <div className={styles.statusContainer}>
-                            <span className={`${styles.status} ${styles[project.status.toLowerCase()]}`}>
-                                {project.status === 'PENDING' ? 'Verifying Request' :
-                                    project.status === 'IN_PROGRESS' ? 'Design in Progress' :
-                                        project.status === 'COMPLETED' ? 'Project Completed' : project.status}
-                            </span>
-                            {project.status === 'PENDING' && (
-                                <p className={styles.statusHelper}>
-                                    We are reviewing your request requirements. This usually takes 24-48 hours.
-                                </p>
-                            )}
+                <div className={styles.grid}>
+                    {designs.map((project) => (
+                        <div key={project.id} className={styles.projectCard}>
+                            <div className={styles.projectHeader}>
+                                <h3>{project.designType}</h3>
+                                <div className={styles.statusContainer}>
+                                    <span className={`${styles.status} ${styles[project.status.toLowerCase()]}`}>
+                                        {project.status === 'PENDING' ? 'Verifying Request' :
+                                            project.status === 'IN_PROGRESS' ? 'Design in Progress' :
+                                                project.status === 'COMPLETED' ? 'Project Completed' : project.status}
+                                    </span>
+                                    {project.status === 'PENDING' && (
+                                        <p className={styles.statusHelper}>
+                                            We are reviewing your request requirements. This usually takes 24-48 hours.
+                                        </p>
+                                    )}
+                                </div>
+                            </div>
+                            <p className={styles.projectDescription}>{project.description}</p>
+                            <div className={styles.projectMeta}>
+                                <span>Budget: {project.budget || "Not specified"}</span>
+                                <span>Submitted: {new Date(project.createdAt).toLocaleDateString()}</span>
+                            </div>
                         </div>
-                    </div>
-                    <p className={styles.projectDescription}>{project.description}</p>
-                    <div className={styles.projectMeta}>
-                        <span>Budget: {project.budget || "Not specified"}</span>
-                        <span>Submitted: {new Date(project.createdAt).toLocaleDateString()}</span>
-                    </div>
+                    ))}
                 </div>
-            ))}
+            )}
         </div>
-    )
-}
-        </div >
     );
 }
