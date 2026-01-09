@@ -78,6 +78,7 @@ model Product {
   categoryId  String
   category    Category @relation(fields: [categoryId], references: [id])
   isFeatured  Boolean  @default(false)
+  isArchived  Boolean  @default(false)
   orders      Order[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
