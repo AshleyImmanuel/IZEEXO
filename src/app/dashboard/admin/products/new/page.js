@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import { ArrowLeft, Save, Loader2, Plus, X } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Plus, X, Sparkles } from "lucide-react";
 import Link from "next/link";
 import styles from "../../../dashboard.module.css";
 import MediaUpload from "@/components/admin/MediaUpload";
@@ -17,6 +17,8 @@ export default function AddProductPage() {
     const [isCreatingCategory, setIsCreatingCategory] = useState(false);
     const [newCategoryName, setNewCategoryName] = useState('');
     const [creatingCatLoading, setCreatingCatLoading] = useState(false);
+    const [suggestion, setSuggestion] = useState(null);
+    const [isApplyingSuggestion, setIsApplyingSuggestion] = useState(false);
 
     const [formData, setFormData] = useState({
         title: '',
@@ -110,6 +112,44 @@ export default function AddProductPage() {
         }));
     };
 
+    // Debounced AI Check
+    useEffect(() => {
+        const timer = setTimeout(async () => {
+            if (!formData.description || formData.description.length < 5) {
+                setSuggestion(null);
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/admin/ai-assist', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text: formData.description })
+                });
+                const data = await res.json();
+
+                // Only show if different
+                if (data.text && data.text !== formData.description) {
+                    setSuggestion(data.text);
+                } else {
+                    setSuggestion(null);
+                }
+            } catch (err) {
+                // ignore silent errors
+            }
+        }, 1000); // 1 second debounce
+
+        return () => clearTimeout(timer);
+    }, [formData.description]);
+
+    const applySuggestion = () => {
+        setIsApplyingSuggestion(true);
+        setFormData(prev => ({ ...prev, description: suggestion }));
+        setSuggestion(null);
+        setIsApplyingSuggestion(false);
+        toast.success("Text improved!");
+    };
+
     return (
         <div className={styles.dashboardPage}>
             <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
@@ -139,7 +179,9 @@ export default function AddProductPage() {
 
                     {/* Description */}
                     <div style={{ marginBottom: '1.5rem' }}>
-                        <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Description</label>
+
+                        <label style={{ fontWeight: '500' }}>Description</label>
+
                         <textarea
                             name="description"
                             required
@@ -147,9 +189,61 @@ export default function AddProductPage() {
                             value={formData.description}
                             onChange={handleChange}
                             placeholder="Describe the product..."
-                            style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e5e7eb', fontSize: '1rem', fontFamily: 'inherit' }}
+                            style={{
+                                width: '100%',
+                                padding: '0.75rem',
+                                borderRadius: '8px',
+                                border: '1px solid #e5e7eb',
+                                fontSize: '1rem',
+                                fontFamily: 'inherit',
+                                borderColor: suggestion ? '#8b5cf6' : '#e5e7eb', // Highlight if suggestion exists
+                                transition: 'border-color 0.3s'
+                            }}
                         />
+                        {suggestion && (
+                            <div style={{
+                                marginTop: '0.5rem',
+                                padding: '0.75rem',
+                                background: '#f5f3ff',
+                                border: '1px solid #ddd6fe',
+                                borderRadius: '8px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                gap: '1rem',
+                            }}
+                                className={styles.fadeIn}
+                            >
+                                <div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                                        <Sparkles size={14} style={{ color: '#7c3aed' }} />
+                                        <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#7c3aed' }}>Suggestion Available</span>
+                                    </div>
+                                    <p style={{ fontSize: '0.9rem', color: '#4b5563', margin: 0 }}>
+                                        {suggestion.length > 50 ? suggestion.substring(0, 50) + '...' : suggestion}
+                                    </p>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={applySuggestion}
+                                    style={{
+                                        whiteSpace: 'nowrap',
+                                        padding: '0.5rem 1rem',
+                                        background: '#7c3aed',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '6px',
+                                        fontSize: '0.85rem',
+                                        fontWeight: '500',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    Apply Fix
+                                </button>
+                            </div>
+                        )}
                     </div>
+
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
                         {/* Price RUPEES */}
@@ -269,17 +363,9 @@ export default function AddProductPage() {
                         {loading ? 'Creating...' : 'Create Product'}
                     </button>
 
-                </form>
-            </div>
-            <style jsx global>{`
-                .${styles.spin} {
-                    animation: spin 1s linear infinite;
-                }
-                @keyframes spin {
-                    from { transform: rotate(0deg); }
-                    to { transform: rotate(360deg); }
-                }
-            `}</style>
-        </div>
+                </form >
+            </div >
+
+        </div >
     );
 }
