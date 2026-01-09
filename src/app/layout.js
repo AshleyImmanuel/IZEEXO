@@ -19,6 +19,30 @@ function LayoutContent({ children }) {
   const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    // Prevent right-click on images
+    const handleContextmenu = (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+      }
+    };
+
+    // Prevent dragging images
+    const handleDragStart = (e) => {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('contextmenu', handleContextmenu);
+    document.addEventListener('dragstart', handleDragStart);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextmenu);
+      document.removeEventListener('dragstart', handleDragStart);
+    };
+  }, []);
+
   // useEffect(() => {
   //   // Check if intro has explicitly played in this session
   //   const hasSeenIntro = sessionStorage.getItem("intro_shown");

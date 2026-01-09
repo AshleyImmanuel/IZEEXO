@@ -58,6 +58,21 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Security: Prevent image dragging and selection */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: auto;
+  /* Ensures clicks still work if needed */
+}
+
 a {
   color: inherit;
   text-decoration: none;
