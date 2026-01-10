@@ -42,14 +42,14 @@ export default function ContactPage() {
                     </a>
 
                     <a
-                        href="mailto:contact@izeexo.com"
+                        href="mailto:suryadevpm8@gmail.com"
                         className={`${styles.linkCard} ${styles.email}`}
                     >
                         <div className={styles.iconWrapper}>
                             <FaEnvelope />
                         </div>
                         <h3>Email</h3>
-                        <p>contact@izeexo.com</p>
+                        <p>suryadevpm8@gmail.com</p>
                     </a>
                 </div>
             </div>

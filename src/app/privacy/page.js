@@ -76,7 +76,7 @@ export default function PrivacyPage() {
                     <p className={styles.text}>
                         If you have any questions about this Privacy Policy, please contact us at:
                     </p>
-                    <a href="mailto:contact@izeexo.com" className={styles.link}>contact@izeexo.com</a>
+                    <a href="mailto:suryadevpm8@gmail.com" className={styles.link}>suryadevpm8@gmail.com</a>
                 </section>
 
                 <Link href="/" className={styles.backLink}>
