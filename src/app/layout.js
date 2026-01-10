@@ -14,6 +14,7 @@ import { Toaster } from "react-hot-toast";
 
 import { useState, useEffect } from "react";
 import Preloader from "@/components/Preloader";
+import PrivacyProtection from "@/components/PrivacyProtection";
 
 function LayoutContent({ children }) {
   const pathname = usePathname();
@@ -64,6 +65,7 @@ function LayoutContent({ children }) {
     <>
       {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
       {shouldShowNav && <Navbar />}
+      <PrivacyProtection />
       {children}
       {shouldShowNav && <Footer />}
     </>

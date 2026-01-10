@@ -484,8 +484,14 @@ a {
 
   .signin_rightPanel {
     padding: 40px;
-    flex: 1;
     width: 100%;
     min-height: 500px;
+  }
+}
+
+/* Privacy - Hide content on print */
+@media print {
+  body {
+    display: none !important;
   }
 }
