@@ -9,7 +9,9 @@ export async function GET(req) {
         const category = searchParams.get("category");
         const search = searchParams.get("search");
 
-        const where = {};
+        const where = {
+            isArchived: false
+        };
 
         if (category && category !== "All") {
             where.category = { name: category };

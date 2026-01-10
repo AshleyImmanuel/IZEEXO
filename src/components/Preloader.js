@@ -20,8 +20,10 @@ export default function Preloader({ onComplete }) {
     const brandTagRef = useRef(null);
 
     useGSAP(() => {
+        console.log("[Preloader] Animation Starting");
         const tl = gsap.timeline({
             onComplete: () => {
+                console.log("[Preloader] Animation Complete");
                 if (onComplete) onComplete();
                 // We don't necessarily need to hide it here if the parent unmounts it, 
                 // but for safety in dev:
