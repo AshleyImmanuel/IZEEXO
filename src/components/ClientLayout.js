@@ -22,13 +22,6 @@ export default function ClientLayout({ children }) {
     });
 
     useEffect(() => {
-        // Prevent right-click on images
-        const handleContextmenu = (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        };
-
         // Prevent dragging images
         const handleDragStart = (e) => {
             if (e.target.tagName === 'IMG') {
@@ -36,11 +29,9 @@ export default function ClientLayout({ children }) {
             }
         };
 
-        document.addEventListener('contextmenu', handleContextmenu);
         document.addEventListener('dragstart', handleDragStart);
 
         return () => {
-            document.removeEventListener('contextmenu', handleContextmenu);
             document.removeEventListener('dragstart', handleDragStart);
         };
     }, []);
