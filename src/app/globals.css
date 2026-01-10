@@ -1,3 +1,6 @@
+@import "../styles/auth.css";
+@import "../styles/utilities.css";
+
 :root {
   /* Brand Colors */
   --color-primary: #0044CC;
@@ -111,8 +114,7 @@ a {
   transform: translateY(-2px);
 }
 
-@import "../styles/auth.css";
-@import "../styles/utilities.css";
+
 
 /* Global Animations */
 .loader {
