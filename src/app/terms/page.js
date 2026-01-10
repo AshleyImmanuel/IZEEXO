@@ -1,4 +1,6 @@
 import Link from "next/link";
+import styles from "@/styles/legal.module.css";
+import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
     title: "Terms of Service | Izeexo",
@@ -7,35 +9,82 @@ export const metadata = {
 
 export default function TermsPage() {
     return (
-        <main className="container" style={{ padding: "4rem 1rem", maxWidth: "800px" }}>
-            <h1 style={{ fontSize: "2.5rem", marginBottom: "1rem", fontWeight: "700" }}>Terms of Service</h1>
-            <p style={{ color: "var(--text-muted)", marginBottom: "2rem" }}>Last Updated: January 2026</p>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "2rem", lineHeight: "1.6" }}>
-                <section>
-                    <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem", fontWeight: "600" }}>1. Introduction</h2>
-                    <p>Welcome to Izeexo. By accessing our website and using our services, you agree to likely abide by these terms and conditions.</p>
-                </section>
-
-                <section>
-                    <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem", fontWeight: "600" }}>2. Intellectual Property</h2>
-                    <p>all content, designs, graphics, and logos on this site are the property of Izeexo unless otherwise stated. You may not reproduce or redistribute our work without permission.</p>
-                </section>
-
-                <section>
-                    <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem", fontWeight: "600" }}>3. Purchases & Refunds</h2>
-                    <p>Due to the digital nature of our products, all sales are final. Please review product details carefully before purchasing.</p>
-                </section>
-
-                <section>
-                    <h2 style={{ fontSize: "1.5rem", marginBottom: "0.5rem", fontWeight: "600" }}>4. Contact Us</h2>
-                    <p>If you have any questions about these Terms, please contact us at <a href="mailto:contact@izeexo.com" style={{ textDecoration: "underline" }}>contact@izeexo.com</a>.</p>
-                </section>
+        <main className={styles.container}>
+            <div className={styles.header}>
+                <h1 className={styles.title}>Terms of Service</h1>
+                <p className={styles.lastUpdated}>Last Updated: January 2026</p>
             </div>
 
-            <div style={{ marginTop: "4rem", paddingTop: "2rem", borderTop: "1px solid #eee" }}>
-                <Link href="/" style={{ textDecoration: "underline", color: "var(--text-muted)" }}>
-                    &larr; Back to Home
+            <div className={styles.content}>
+                <section className={styles.section}>
+                    <h2 className={styles.sectionTitle}>
+                        <span className={styles.sectionNumber}>1</span>
+                        Introduction
+                    </h2>
+                    <p className={styles.text}>
+                        Welcome to Izeexo. By accessing our website and using our services, you agree to comply with and be bound by these terms and conditions. If you do not agree, please do not use our services.
+                    </p>
+                </section>
+
+                <section className={styles.section}>
+                    <h2 className={styles.sectionTitle}>
+                        <span className={styles.sectionNumber}>2</span>
+                        Intellectual Property
+                    </h2>
+                    <p className={styles.text}>
+                        All content, designs, graphics, and logos on this site are the property of Izeexo unless otherwise stated. You may not reproduce, distribute, or create derivative works without our express written permission.
+                    </p>
+                    <p className={styles.text}>
+                        Upon purchase of a custom design or logo, ownership rights are transferred to the client as specified in the purchase agreement.
+                    </p>
+                </section>
+
+                <section className={styles.section}>
+                    <h2 className={styles.sectionTitle}>
+                        <span className={styles.sectionNumber}>3</span>
+                        Purchases & Refunds
+                    </h2>
+                    <p className={styles.text}>
+                        Due to the digital nature of our products and services, all sales are final. Please review product details and service descriptions carefully before purchasing.
+                    </p>
+                    <p className={styles.text}>
+                        Refunds may be considered on a case-by-case basis at our sole discretion if a product is proven to be defective or not as described.
+                    </p>
+                </section>
+
+                <section className={styles.section}>
+                    <h2 className={styles.sectionTitle}>
+                        <span className={styles.sectionNumber}>4</span>
+                        User Accounts
+                    </h2>
+                    <p className={styles.text}>
+                        You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. Izeexo reserves the right to terminate accounts that violate these terms.
+                    </p>
+                </section>
+
+                <section className={styles.section}>
+                    <h2 className={styles.sectionTitle}>
+                        <span className={styles.sectionNumber}>5</span>
+                        Limitation of Liability
+                    </h2>
+                    <p className={styles.text}>
+                        Izeexo shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services.
+                    </p>
+                </section>
+
+                <div className={styles.divider} />
+
+                <section className={styles.section}>
+                    <h2 className={styles.sectionTitle}>Contact Us</h2>
+                    <p className={styles.text}>
+                        If you have any questions about these Terms, please contact us at:
+                    </p>
+                    <a href="mailto:contact@izeexo.com" className={styles.link}>contact@izeexo.com</a>
+                </section>
+
+                <Link href="/" className={styles.backLink}>
+                    <ArrowLeft size={16} />
+                    Back to Home
                 </Link>
             </div>
         </main>
