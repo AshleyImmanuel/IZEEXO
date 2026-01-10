@@ -22,6 +22,7 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: false, // Disable CSS optimization to prevent preload warnings
+    // Force rebuild: Cache bust - timestamp 2026-01-10
   },
   async headers() {
     return [
