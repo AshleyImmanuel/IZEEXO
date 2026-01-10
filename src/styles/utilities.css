@@ -1,0 +1,24 @@
+/* Privacy - Hide content on print */
+@media print {
+    body {
+        display: none;
+    }
+}
+
+/* Watermark Utility */
+.watermarked {
+    position: relative;
+    overflow: hidden;
+}
+
+.watermarked::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    /* Diagonal "IZEEXO" pattern */
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTUwJyBoZWlnaHQ9JzE1MCcgdmlld0JveD0nMCAwIDE1MCAxNTAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHRleHQgeD0nNTAlJyB5PSc1MCUnIGRvbWluYW50LWJhc2VsaW5lPSdtaWRkbGUnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJyBmb250LXdlaWdodD0nYm9sZCcgZm9udC1zaXplPScxNicgZmlsbD0ncmdiYSgyNTUsMjU1LDI1NSwwLjI1KScgdHJhbnNmb3JtPSdyb3RhdGUoLTQ1LCA3NSwgNzUpJz5JWkVFWE88L3RleHQ+PC9zdmc+");
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+}
