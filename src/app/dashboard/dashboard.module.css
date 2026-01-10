@@ -227,6 +227,10 @@
     .contentGrid {
         grid-template-columns: 1fr;
     }
+
+    .mainWrapper {
+        padding: 2rem 1rem;
+    }
 }
 
 /* Animations found in AddProductPage */

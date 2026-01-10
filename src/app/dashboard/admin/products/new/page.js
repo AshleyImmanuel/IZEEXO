@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import { ArrowLeft, Save, Loader2, Plus, X, Sparkles } from "lucide-react";
+import { ArrowLeft, Save, Loader2, X, Sparkles } from "lucide-react";
 import Link from "next/link";
 import styles from "../../../dashboard.module.css";
 import MediaUpload from "@/components/admin/MediaUpload";
@@ -30,20 +30,19 @@ export default function AddProductPage() {
     });
 
     useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await fetch('/api/admin/categories');
+                if (res.ok) {
+                    const data = await res.json();
+                    setCategories(data);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
         fetchCategories();
     }, []);
-
-    const fetchCategories = async () => {
-        try {
-            const res = await fetch('/api/admin/categories');
-            if (res.ok) {
-                const data = await res.json();
-                setCategories(data);
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     const handleCreateCategory = async () => {
         if (!newCategoryName.trim()) return;
