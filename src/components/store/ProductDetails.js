@@ -71,7 +71,7 @@ export default function ProductDetails({ product }) {
                         <div className={styles.carouselContainer}>
 
                             {/* Main Media Display */}
-                            <div className={styles.imagePlaceholder}>
+                            <div className={`${styles.imagePlaceholder} watermarked`}>
                                 {media[activeIndex]?.type === 'video' ? (
                                     <video
                                         src={media[activeIndex].src}

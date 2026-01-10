@@ -8,7 +8,7 @@ export default function ProductCard({ product, priority = false }) {
     return (
         <Link href={`/store/${product.id}`} className={styles.cardLink}>
             <div className={styles.card}>
-                <div className={styles.imageWrapper}>
+                <div className={`${styles.imageWrapper} watermarked`}>
                     <Image
                         src={product.image || '/assets/placeholder.png'}
                         alt={product.title}

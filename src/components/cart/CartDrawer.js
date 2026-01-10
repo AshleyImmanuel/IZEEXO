@@ -70,7 +70,7 @@ export default function CartDrawer() {
                     ) : (
                         cart.map((item) => (
                             <div key={item.id} className={styles.item}>
-                                <div className={styles.itemImageWrapper}>
+                                <div className={`${styles.itemImageWrapper} watermarked`}>
                                     {(item.image || (item.images && item.images.length > 0)) ? (
                                         <Image
                                             src={item.image || item.images[0]}
