@@ -8,6 +8,7 @@ import Link from "next/link";
 import styles from "../../../dashboard.module.css";
 import MediaUpload from "@/components/admin/MediaUpload";
 import DashboardLoader from "@/components/dashboard/DashboardLoader";
+import CustomSelect from "@/components/ui/CustomSelect";
 
 export default function EditProductPage({ params }) {
     // Unwrap params using React.use()
@@ -144,11 +145,13 @@ export default function EditProductPage({ params }) {
                         </div>
                         <div>
                             <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Category</label>
-                            <select name="categoryId" required value={formData.categoryId} onChange={handleChange}
-                                style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e5e7eb', fontSize: '1rem', background: '#fff' }}>
-                                <option value="" disabled>Select a category</option>
-                                {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.name}</option>)}
-                            </select>
+                            <CustomSelect
+                                options={categories.map(c => ({ value: c.id, label: c.name }))}
+                                value={formData.categoryId}
+                                onChange={(val) => setFormData(prev => ({ ...prev, categoryId: val }))}
+                                placeholder="Select a category"
+                                searchable={true}
+                            />
                         </div>
                     </div>
 
